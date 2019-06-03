@@ -1,0 +1,60 @@
+package com.ys.main;
+
+import java.util.ArrayList;
+
+import com.ys.bean.Student;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		// excel路径
+		// String excelPath = "16计算机科学与技术3学生名单.xls";
+		String excelPath = "16计算机科学与技术3学生名单.xls";
+		ArrayList<Student> students = ReadExcel.readExcel(excelPath);
+		// 遍历进行验证
+		// for (Student student : students) {
+		// System.out.println(student);
+		// }
+
+		// 文件夹路径
+		String path = "F:\\Google\\downloads\\实验报告\\多媒体实验\\16计科3班多媒体实验一";
+		// String path = "F:\\Google\\downloads\\实验报告\\实验报告下载";
+		ArrayList<String> pathList = TraversalPath.raversalSubPath(path);
+		for (String string : pathList) {
+			System.out.println(string);
+		}
+
+		// 比较学号
+		ArrayList<Student> studentFindList = new ArrayList<Student>();
+		for (Student student : students) {
+			String sno = student.getSno();
+			for (String path1 : pathList) {
+				if (sno.compareTo(path1) == 0) { // 匹配成功返回0
+					// System.out.println("\n匹配成功，学生信息为：");
+					// System.out.println(student);
+					studentFindList.add(student);
+				}
+
+			}
+
+		}
+
+		System.out.println("\n遍历--已找到学生列表：");
+		for (Student student : studentFindList) {
+			System.out.println(student);
+		}
+
+		// 移除找到的学生
+		students.removeAll(studentFindList);
+		
+		System.out.println("\n遍历--没找到学生列表：");
+		System.out.println("一共有：" + students.size() + "人");
+
+		for (Student student : students) {
+			System.out.println(student);
+		}
+	}
+
+}
