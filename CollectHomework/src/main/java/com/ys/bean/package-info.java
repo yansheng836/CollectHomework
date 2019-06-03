@@ -1,5 +1,5 @@
 /**
- * 
+ * 主要是存放javabean
  */
 /**
  * @author yansheng

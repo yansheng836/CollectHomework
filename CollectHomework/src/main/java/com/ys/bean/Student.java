@@ -1,17 +1,36 @@
 package com.ys.bean;
 
+/**
+ * <p>Title: Student</p>
+ * <p>Description: 定义一个javabean，保存学生信息，字段分别为：班级序号（2位），学号（11位），姓名</p>
+ * <p>Company: </p>
+ * @author yansheng
+ * @date 2019-06-03 20:43:30
+ * @version v1.0 
+ */
 public class Student {
 
-	/*
-	 * 将学生封装成一个javabean 字段分别为：班级序号（2位），学号（11位），姓名
-	 */
-
+	/**  
+	 * @Fields no : 班级序号（2位）
+	 */  
 	private String no;
+	/**  
+	 * @Fields sno : 学号（11位）
+	 */  
 	private String sno;
+	/**  
+	 * @Fields sname : 姓名
+	 */  
 	private String sname;
 
-	// 构造方法
-
+	/**
+	 * @Title Student
+	 * @Description 构造方法
+	 * @param no
+	 * @param sno
+	 * @param sname
+	 * @throws
+	 */
 	public Student(String no, String sno, String sname) {
 		super();
 		this.no = no;
