@@ -2,10 +2,18 @@ package com.ys.main;
 
 import java.util.ArrayList;
 
+/**
+ * <p>Title: </p>
+ * <p>Description: 测试list的使用</p>
+ * <p>Company: </p>
+ * @author yansheng
+ * @date 2019-06-05 23:33:39
+ * @version v1.0 
+ */
 public class TestList {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		ArrayList<String> strings = new ArrayList<String>();
 		ArrayList<String> stringss = new ArrayList<String>();
 		strings.add("1");
