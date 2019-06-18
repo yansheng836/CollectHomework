@@ -7,7 +7,7 @@ import com.ys.bean.Student;
 import com.ys.util.ExcelUtil;
 import com.ys.util.PathUtil;
 
-public class TestMain {
+public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
@@ -22,13 +22,13 @@ public class TestMain {
 		// }
 
 		// 文件夹路径
-		String path = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\linux";
+		String path = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\多媒体\\实验一";
 		//String path = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计算机3班-嵌入式实验报告";
-		
+		// String path = "F:\\Google\\downloads\\实验报告\\实验报告下载";
 		ArrayList<String> pathList = PathUtil.raversalPath(path);
-//		for (String string : pathList) {
-//			System.out.println(string);
-//		}
+		for (String string : pathList) {
+			System.out.println(string);
+		}
 
 		// 比较学号
 		ArrayList<Student> studentFindList = new ArrayList<Student>();
@@ -45,7 +45,7 @@ public class TestMain {
 
 		}
 
-		System.out.println("\n--遍历--已找到学生列表：");
+		System.out.println("\n遍历--已找到学生列表：");
 		for (Student student : studentFindList) {
 			System.out.println(student);
 		}
@@ -59,8 +59,6 @@ public class TestMain {
 		for (Student student : students) {
 			System.out.println(student);
 		}
-		
-		ExcelUtil.writeExcel(students);
 	}
 
 }

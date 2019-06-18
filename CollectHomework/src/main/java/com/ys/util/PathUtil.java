@@ -41,6 +41,7 @@ public class PathUtil {
 
 		// 遍历path下的文件和目录，放在File数组中
 		File[] files = file.listFiles();
+		System.out.println("--该路径下有 "+files.length + " 个文件--");
 		for (File f : files) {
 			// 1.绝对路径
 			// System.out.println(f);

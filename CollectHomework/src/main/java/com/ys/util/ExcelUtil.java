@@ -124,7 +124,7 @@ public class ExcelUtil {
 	 */
 	public static void writeExcel(ArrayList<Student> students) {
 
-		String path = "16计算机科学与技术3学生名单--.xls";
+		String path = "16计算机科学与技术3--未交作业的学生名单.xls";
 		System.out.println("\n--将学生列表写到excel文件(" + path + ")中:");
 
 		// 1.1 打开文件
