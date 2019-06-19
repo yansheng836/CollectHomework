@@ -7,6 +7,14 @@ import com.ys.bean.Student;
 import com.ys.util.ExcelUtil;
 import com.ys.util.PathUtil;
 
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Company: </p>
+ * @author yansheng
+ * @date 2019-06-19 14:07:42
+ * @version v1.0 
+ */
 public class TestMain {
 
 	public static void main(String[] args) throws FileNotFoundException {
@@ -22,7 +30,7 @@ public class TestMain {
 		// }
 
 		// 文件夹路径
-		String path = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\linux";
+		String path = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
 		//String path = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计算机3班-嵌入式实验报告";
 		
 		ArrayList<String> pathList = PathUtil.raversalPath(path);

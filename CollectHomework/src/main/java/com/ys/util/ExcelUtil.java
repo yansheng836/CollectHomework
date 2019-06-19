@@ -30,9 +30,9 @@ public class ExcelUtil {
 	 * @version v1.0
 	 * @Time 2019-06-03 19:46:19
 	 * @Description 1.读取excel文件中的数据，保存到ArrayList中
-	 * @param path
-	 * @return ArrayList<Student> 
-	 * @see  Student
+	 * @param path 需要读取的excel文件路径
+	 * @return ArrayList  返回学生集
+	 * @see  Student 学生类常见Student
 	 * @exception
 	 */
 	public static ArrayList<Student> readExcel(String path) {
@@ -115,7 +115,7 @@ public class ExcelUtil {
 	 * @Title writeExcel
 	 * @author yansheng
 	 * @version v1.0
-	 * @Time 2019-06-03 21:47:04
+	 * @date 2019-06-03 21:47:04
 	 * @Description 2.写Excel的方法
 	 * @param students   
 	 * @return void 

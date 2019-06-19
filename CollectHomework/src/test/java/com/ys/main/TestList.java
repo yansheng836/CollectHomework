@@ -35,6 +35,10 @@ public class TestList {
 		for (String string : stringss) {
 			System.out.println(string);
 		}
+		
+		//
+		System.out.println("打印列表信息：");
+		System.out.println(strings.toString());
 
 	}
 

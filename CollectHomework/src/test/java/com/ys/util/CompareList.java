@@ -31,7 +31,7 @@ public class CompareList {
 	 * @Description 比较从点名册中取得的列表和指定目录的文件数量是否相同,对结果给出对应的提示
 	 * @param args   
 	 * void 
-	 * @see  
+	 * @see  ExcelUtil
 	 * @exception
 	 */
 	public static void main(String[] args) {

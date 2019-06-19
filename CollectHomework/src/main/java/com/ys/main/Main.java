@@ -7,6 +7,14 @@ import com.ys.bean.Student;
 import com.ys.util.ExcelUtil;
 import com.ys.util.PathUtil;
 
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Company: </p>
+ * @author yansheng
+ * @date 2019-06-19 14:07:33
+ * @version v1.0 
+ */
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
