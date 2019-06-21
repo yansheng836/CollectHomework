@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -100,7 +101,11 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 		jTextArea = new JTextArea(6, 73);
 		jTextArea.setFont(new Font("宋体", Font.BOLD, 25));
 		jTextArea.setText("这里将显示测试结果");
-		this.add(jTextArea);
+		
+		// 添加滚动窗格，当内容超过范围时，显示滚动条
+		JScrollPane jsp1 = new JScrollPane(jTextArea);
+//		this.add(jTextArea);
+		this.add(jsp1);
 
 		// 存储测试用例
 		ArrayList<Student> students = new ArrayList<Student>();
