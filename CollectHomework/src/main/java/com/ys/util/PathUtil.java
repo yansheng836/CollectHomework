@@ -50,7 +50,8 @@ public class PathUtil {
 			// 2.文件名
 			// System.out.println(f.getName());
 			String fileName = f.getName();
-			fileName = subPath(fileName);
+			// 剪切文件名
+			//fileName = subPath(fileName);
 			pathList.add(fileName);
 		}
 

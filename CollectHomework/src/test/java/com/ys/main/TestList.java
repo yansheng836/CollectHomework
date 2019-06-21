@@ -1,6 +1,7 @@
 package com.ys.main;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 /**
  * <p>Title: </p>
@@ -39,6 +40,17 @@ public class TestList {
 		//
 		System.out.println("打印列表信息：");
 		System.out.println(strings.toString());
+		
+		
+		//尝试正则匹配
+		boolean bool = false;
+		String regex = "颜";
+		String string = "我是颜升";
+		bool = Pattern.matches(regex, string);
+		boolean bool1 = string.contains(regex);
+		System.out.println("匹配返回值为："+bool);
+		System.out.println("匹配返回值为："+bool1);
+		
 
 	}
 

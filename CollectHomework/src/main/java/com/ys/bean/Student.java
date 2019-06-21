@@ -29,7 +29,6 @@ public class Student {
 	 * @param no
 	 * @param sno
 	 * @param sname
-	 * @throws
 	 */
 	public Student(String no, String sno, String sname) {
 		super();
