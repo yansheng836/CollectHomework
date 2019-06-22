@@ -44,13 +44,28 @@ public class TestFindStudentUtil {
 		// }
 
 		// 文件夹路径
-		String path = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
-		ArrayList<String> pathList = PathUtil.raversalPath(path);
+		String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
+		ArrayList<String> fileList = FileUtil.readDir(dirPath);
 		
-		ArrayList<Student> studentFindList = FindStudentUtil.findBySname1(students, pathList);
+		String string = FindStudentUtil.compareNumber(students, fileList);
+		System.out.println("string:" + string);
+		
+
+		String sign = "sno";
+		ArrayList<ArrayList<Student>> arrayStuList = FindStudentUtil.findBySname(students, fileList, sign);
+		ArrayList<Student> studentFindList = arrayStuList.get(0);
+		ArrayList<Student> noFoundStuList = arrayStuList.get(1);
+		System.out.println("在TestFindStudentUtil中遍历：");
 		for (Student student : studentFindList) {
 			System.out.println(student);
 		}
+
+		System.out.println("不存在的student中遍历：");
+		for (Student student : noFoundStuList) {
+			System.out.println(student);
+		}
+
+		
 
 	}
 
