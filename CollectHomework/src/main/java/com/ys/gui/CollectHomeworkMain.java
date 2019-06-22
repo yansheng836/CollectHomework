@@ -8,7 +8,7 @@ package com.ys.gui;
  * @date 2019-06-19 14:07:11
  * @version v1.0 
  */
-public class TestTriangleMain {
+public class CollectHomeworkMain {
 
 	public static void main(String[] args) {
 		// 测试方法1：利用GUI界面输入测试数据，然后将实验结果输出到excel表格中
