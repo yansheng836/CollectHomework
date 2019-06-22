@@ -19,7 +19,7 @@ import java.util.Iterator;
  * @date 2019-06-20 02:26:08
  * @version v1.0 
  */
-public class TestList1 {
+public class TestIterator {
 
 	/**
 	 * @Title main
@@ -34,6 +34,10 @@ public class TestList1 {
 	 */
 	public static void main(String[] args) {
 
+		/*
+		 * 为了实现在遍历list是，进行修改，如果用简单foreach会抛出java.util.ConcurrentModificationException异常
+		 * 要用Iterator方法，参考：https://www.cnblogs.com/dolphin0520/p/3933551.html
+		 */
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		list.add(2);
 		Iterator<Integer> iterator = list.iterator();
