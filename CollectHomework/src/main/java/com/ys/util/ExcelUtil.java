@@ -1,6 +1,8 @@
 package com.ys.util;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.ys.bean.Student;
@@ -9,9 +11,12 @@ import jxl.Cell;
 import jxl.CellType;
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.read.biff.BiffException;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 
 /**
  * <p>Title: </p>
@@ -24,37 +29,43 @@ import jxl.write.WritableWorkbook;
 public class ExcelUtil {
 
 	/**
-	 * 
 	 * @Title readExcel
 	 * @author yansheng
-	 * @version v1.0
-	 * @Time 2019-06-03 19:46:19
-	 * @Description 1.读取excel文件中的数据，保存到ArrayList中
-	 * @param path 需要读取的excel文件路径
-	 * @return ArrayList  返回学生集
-	 * @see  Student 学生类常见Student
-	 * @exception
+	 * @version v2.0
+	 * @date 2019-06-22 14:51:00
+	 * @Description 读取excel文件中的数据，保存到ArrayList中
+	 * @param excelPath	需要读取的excel文件路径
+	 * @return   
+	 * ArrayList<Student> 返回学生集
+	 * @see  Student 学生类详见Student
+	 * @exception NullPointerException	传入参数为空时，抛出异常。
+	 * @exception FileNotFoundException 系统中没有找到该文件时，抛出异常。
+	 * @exception BiffException Excel表格的格式不是xls
+	 * @exception IOException 读文件时发生异常。
+	 * @exception IndexOutOfBoundsException 读取的工作表数量、单元格的行数或者越界。
+	 * @exception Exception 关闭文件失败时抛出异常
 	 */
-	public static ArrayList<Student> readExcel(String path) {
+	public static ArrayList<Student> readExcel(String excelPath) {
 
-		System.out.println("--读取excel文件(" + path + ")中的信息：");
+		System.out.println("----读取excel文件(" + excelPath + ")中的信息：");
 
 		// 定义ArrayList，用于存储bean（Student）的集合
 		ArrayList<Student> students = new ArrayList<Student>();
 
 		// 该数组主要存放一些特殊的标记，如留级、休学等，作用：点名册中的学生如果有这些标记的就不加入现有学生列表中。
 		String[] signs = { "留级", "退学", "休学" };
+		int signsLength = signs.length;
 		// 遍历-测试
 		// for (String sign : signs) {
 		// System.out.println(sign);
 		// }
 
 		// 1. 新建（打开）一个工作簿对象
-		Workbook book = null;
+		Workbook workbook = null;
 		try {
-			book = Workbook.getWorkbook(new File(path));
+			workbook = Workbook.getWorkbook(new File(excelPath));
 			// 2. 获得第一个工作表对象
-			Sheet sheet = book.getSheet(0);
+			Sheet sheet = workbook.getSheet(0);
 			int rows = sheet.getRows();
 			// System.out.println(rows);
 
@@ -66,7 +77,7 @@ public class ExcelUtil {
 				if (cellNo.getType() != CellType.EMPTY) {
 					Cell cellSno = sheet.getCell(1, i);
 					Cell cellSname = sheet.getCell(2, i);
-					// 该列主要是一些特殊的标记
+					// 该列(第四列)主要是一些特殊的标记
 					Cell cellSign = sheet.getCell(3, i);
 
 					String no = cellNo.getContents().trim();
@@ -77,14 +88,14 @@ public class ExcelUtil {
 
 					Student student = new Student(no, sno, sname);
 					// 如果第4列有特殊标记，则不添加该学生姓名到列表中,否则将该学生添加到列表中
-					for (int j = 0; j < signs.length; j++) {
+					for (int j = 0; j < signsLength; j++) {
 						if (signs[j].equalsIgnoreCase(sign)) {
 							System.out.println(student + "的情况特殊，标志sign为：" + sign + ",故不加入学生列表。");
 							// 匹配到一个就跳出循环
-							break;	
-						} else if (j == signs.length - 1) {
+							break;
+						} else if (j == signsLength - 1) {
 							// 遍历关键字列表都没有匹配到，将该学生添加到列表中
-							students.add(student); 
+							students.add(student);
 						}
 					}
 				}
@@ -96,17 +107,33 @@ public class ExcelUtil {
 			// System.out.println(student);
 			// }
 
-		} catch (Exception e) {
-			System.out.println(e);
+			// 如果上面的语句都没有发生异常，
+			System.out.println("----读Excel成功。----\n");
+			
+		} catch (NullPointerException e) {
+			System.out.println("NullPointerException:File路径名为空。");
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			System.out.println("FileNotFoundException:系统找不到File指定的文件。");
+			e.printStackTrace();
+		} catch (BiffException | IOException e) {
+			// BiffException:Exception thrown when reading a biff file
+			// biff:Binary Interchange File Format(二进制文件交换格式)
+			System.out.println("BiffException | IOException：Excel表格的格式不是xls。");
+			e.printStackTrace();
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("IndexOutOfBoundsException：读取的工作表数量、单元格的行数或者越界。");
+			e.printStackTrace();
 		} finally {
-			if (book != null) {
+			// 如果资源没有gc被回收，手动关闭资源。
+			if (workbook != null) {
 				try {
-					book.close();
-				} catch (Exception e2) {
-					System.out.println(e2);
+					workbook.close();
+				} catch (Exception e) {
+					System.out.println("Exception：关闭workbook时发生异常。");
+					e.printStackTrace();
 				}
 			}
-			System.out.println("读Excel成功。");
 		}
 		return students;
 	}
@@ -114,28 +141,31 @@ public class ExcelUtil {
 	/**
 	 * @Title writeExcel
 	 * @author yansheng
-	 * @version v1.0
-	 * @date 2019-06-03 21:47:04
-	 * @Description 2.写Excel的方法
-	 * @param students   
+	 * @version v2.0
+	 * @date 2019-06-22 15:30:23
+	 * @Description 将学生列表的数据写到Excel的方法
+	 * @param students 学生列表
 	 * @return void 
-	 * @see  
-	 * @exception
+	 * @see  Student
+	 * @exception NullPointerException File路径名为空。
+	 * @exception IOException 创建工作表时发生异常。
+	 * @exception RowsExceededException 添加单元格到工作表时，当写入的函数超过最大值时(10000以内不会)抛出异常。
+	 * @exception WriteException 添加单元格到工作表时，可能发生的异常。
+	 * @exception Exception 关闭workbook时发生异常。
 	 */
 	public static void writeExcel(ArrayList<Student> students) {
 
-		String path = "16计算机科学与技术3--未交作业的学生名单.xls";
-		System.out.println("\n--将学生列表写到excel文件(" + path + ")中:");
+		String excelPath = "16计算机科学与技术3--未交作业的学生名单.xls";
 
 		// 1.1 打开文件
-		WritableWorkbook book = null;
+		WritableWorkbook workbook = null;
 		try {
-			book = Workbook.createWorkbook(new File(path));
+			workbook = Workbook.createWorkbook(new File(excelPath));
 
 			// 1.2 生成名为“第一页”的工作表，参数0表示这是第一页
-			WritableSheet sheet = book.createSheet("第一页", 0);
+			WritableSheet sheet = workbook.createSheet("第一页", 0);
 
-			// 设置第一行（列，行）,读字符串用Label对象
+			// 设置表头（第一行数据）（列，行）,读字符串用Label对象
 			Label labelNo = new Label(0, 0, "序号");
 			Label labelSno = new Label(1, 0, "学号");
 			Label labelSname = new Label(2, 0, "姓名");
@@ -149,7 +179,7 @@ public class ExcelUtil {
 
 			for (int i = 0; i < rows; i++) {
 				// 依次取得学生列表中每个学生的信息
-				labelNo = new Label(0, i + 1, students.get(i).getNo()); 
+				labelNo = new Label(0, i + 1, students.get(i).getNo());
 				labelSno = new Label(1, i + 1, students.get(i).getSno());
 				labelSname = new Label(2, i + 1, students.get(i).getSname());
 
@@ -161,22 +191,35 @@ public class ExcelUtil {
 			// 将统计人数信息写到表中
 			Label labelConuter = new Label(0, rows + 2, "共有学生" + students.size() + "名");
 			sheet.addCell(labelConuter);
-			
-			// 写入数据
-			book.write();
 
-		} catch (Exception e) {
+			workbook.write();
+			// 如果上面的语句都没有发生异常，
+			System.out.println("\n----写数据到("+excelPath+")成功。----\n");
+
+		} catch (NullPointerException e) {
+			System.out.println("NullPointerException:File路径名为空。");
 			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("IOException:创建工作表时发生异常。");
+			e.printStackTrace();
+		} catch (RowsExceededException e1) {
+			System.out.println("RowsExceededException:添加单元格到工作表时，当写入的函数超过最大值时(10000以内不会)抛出异常。");
+			e1.printStackTrace();
+		} catch (WriteException e1) {
+			System.out.println("WriteException:添加单元格到工作表时，可能发生的异常。");
+			e1.printStackTrace();
 		} finally {
-			if (book != null) {
+			// 如果资源没有gc被回收，手动关闭资源。
+			if (workbook != null) {
 				try {
-					book.close();
-				} catch (Exception e2) {
-					System.out.println(e2);
+					workbook.close();
+				} catch (Exception e) {
+					System.out.println("Exception：关闭workbook时发生异常。");
+					e.printStackTrace();
 				}
 			}
-			System.out.println("写Excel成功。");
 		}
+
 	}
 
 }
