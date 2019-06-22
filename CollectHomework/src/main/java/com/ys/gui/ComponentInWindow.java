@@ -174,12 +174,17 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 
 				ArrayList<String> fileList = FileUtil.readDir(dirPath);
 				
-				String string = FindStudentUtil.compareNumber(students, fileList);
-				System.out.println("string:" + string);
-				
+				String[] compareResults = FindStudentUtil.compareNumber(students, fileList);
+				String result = compareResults[0];
+				int stuNum = Integer.parseInt(compareResults[1]);
+				int fileNum = Integer.parseInt(compareResults[2]);
+						
+				System.out.println("result:"+result);
+				System.out.println("stuNum:"+stuNum);
+				System.out.println("fileNum:"+fileNum);
 
 				String sign = "sno";
-				ArrayList<ArrayList<Student>> arrayStuList = FindStudentUtil.findBySname(students, fileList, sign);
+				ArrayList<ArrayList<Student>> arrayStuList = FindStudentUtil.findStu(students, fileList, sign);
 				ArrayList<Student> studentFindList = arrayStuList.get(0);
 				ArrayList<Student> noFoundStuList = arrayStuList.get(1);
 				System.out.println("在TestFindStudentUtil中遍历：");

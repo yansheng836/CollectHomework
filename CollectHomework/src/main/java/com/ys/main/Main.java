@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 import com.ys.bean.Student;
 import com.ys.util.ExcelUtil;
-import com.ys.util.PathUtil;
+import com.ys.util.FileUtil;
+import com.ys.util.FindStudentUtil;
 
 /**
  * <p>Title: </p>
@@ -18,10 +19,6 @@ import com.ys.util.PathUtil;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		// TODO Auto-generated method stub
-
-		// excel路径
-		// String excelPath = "16计算机科学与技术3学生名单.xls";
 		String excelPath = "16计算机科学与技术3学生名单.xls";
 		ArrayList<Student> students = ExcelUtil.readExcel(excelPath);
 		// 遍历进行验证
@@ -30,43 +27,33 @@ public class Main {
 		// }
 
 		// 文件夹路径
-		String path = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\多媒体\\实验一";
-		//String path = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计算机3班-嵌入式实验报告";
-		// String path = "F:\\Google\\downloads\\实验报告\\实验报告下载";
-		ArrayList<String> pathList = PathUtil.raversalPath(path);
-		for (String string : pathList) {
-			System.out.println(string);
-		}
-
-		// 比较学号
-		ArrayList<Student> studentFindList = new ArrayList<Student>();
-		for (Student student : students) {
-			String sno = student.getSno();
-			for (String path1 : pathList) {
-				if (sno.compareTo(path1) == 0) { // 匹配成功返回0
-					// System.out.println("\n匹配成功，学生信息为：");
-					// System.out.println(student);
-					studentFindList.add(student);
-				}
-
-			}
-
-		}
-
-		System.out.println("\n遍历--已找到学生列表：");
+		String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
+		ArrayList<String> fileList = FileUtil.readDir(dirPath);
+		
+		String[] compareResults = FindStudentUtil.compareNumber(students, fileList);
+		String result = compareResults[0];
+		int stuNum = Integer.parseInt(compareResults[1]);
+		int fileNum = Integer.parseInt(compareResults[2]);
+				
+		System.out.println("result:"+result);
+		System.out.println("stuNum:"+stuNum);
+		System.out.println("fileNum:"+fileNum);
+		
+		
+		String sign = "sno";
+		ArrayList<ArrayList<Student>> arrayStuList = FindStudentUtil.findStu(students, fileList, sign);
+		ArrayList<Student> studentFindList = arrayStuList.get(0);
+		ArrayList<Student> noFoundStuList = arrayStuList.get(1);
+		System.out.println("\n在TestFindStudentUtil中遍历已交作业的学生：");
 		for (Student student : studentFindList) {
 			System.out.println(student);
 		}
 
-		// 移除找到的学生
-		students.removeAll(studentFindList);
-
-		System.out.println("\n遍历--没找到学生列表：");
-		System.out.println("一共有：" + students.size() + "人");
-
-		for (Student student : students) {
+		System.out.println("\n遍历未交作业的学生：");
+		for (Student student : noFoundStuList) {
 			System.out.println(student);
 		}
+
 	}
 
 }
