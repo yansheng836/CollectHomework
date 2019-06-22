@@ -31,7 +31,7 @@ public class FindStudentUtil {
 	 * @Description 通过（文件名与点名册中的）姓名对比，查找已交作业的学生集合；为了减少代码的重复率，直接将按姓名进行检索和按学号进行检索合并在一个方法里面。。
 	 * @param students 点名册中的学生集合
 	 * @param fileList 文件路径名集合
-	 * @param sign
+	 * @param sign 用于判断是按姓名进行检索和按学号进行检索的标志
 	 * @return   
 	 * ArrayList<ArrayList<Student>> 一个包含ArrayList<Student>对象的列表，第一个值为已找到的学生列表，第二个值为未找到的学生列表
 	 * @see  Student /CollectHomework/src/test/java/com/ys/main/TestList1.java
@@ -132,8 +132,8 @@ public class FindStudentUtil {
 	 * @version v1.0
 	 * @date 2019-06-22 22:28:53
 	 * @Description 比较班级学生人数和文件夹内的文件数目是否一致
-	 * @param students
-	 * @param fileList
+	 * @param students 班级人数
+	 * @param fileList 文件数量（已交作业数量）
 	 * @return   
 	 * String[] 字符串数组（字符串，学生数量，文件数量）
 	 */
@@ -164,7 +164,7 @@ public class FindStudentUtil {
 	 * @date 2019-06-20 01:02:44
 	 * @Description 通过（文件名与点名册中的）姓名对比，查找已交作业的学生集合
 	 * @param students 点名册中的学生集合
-	 * @param pathList 文件路径名集合
+	 * @param fileList 文件路径名集合
 	 * @return   
 	 * ArrayList<Student> 找到的学生列表
 	 * @deprecated 之前用foreach遍历，但是不能在遍历时进行list的修改（会抛出ConcurrentModificationException异常）;

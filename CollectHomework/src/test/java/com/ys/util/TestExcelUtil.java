@@ -29,8 +29,7 @@ public class TestExcelUtil {
 	 * @version v1.0
 	 * @Time 2019-06-03 20:32:38
 	 * @Description 测试ExcelUtil类的函数功能
-	 * @param args   
-	 * @return void 
+	 * @param args 主方法参数
 	 * @see  ExcelUtil
 	 */
 	public static void main(String[] args) {

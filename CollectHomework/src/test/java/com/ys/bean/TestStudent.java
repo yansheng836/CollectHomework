@@ -16,10 +16,8 @@ public class TestStudent {
 	 * @version v1.0
 	 * @Time 2019-06-03 23:06:20
 	 * @Description 测试Student
-	 * @param args   
-	 * @return void 
+	 * @param args 主方法参数
 	 * @see  Student
-	 * @exception
 	 */
 	public static void main(String[] args) {
 		

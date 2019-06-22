@@ -39,11 +39,11 @@ public class ExcelUtil {
 	 * ArrayList<Student> 返回学生集
 	 * @see  Student 学生类详见Student
 	 * @exception NullPointerException	传入参数为空时，抛出异常。
-	 * @exception FileNotFoundException 系统中没有找到该文件时，抛出异常。
-	 * @exception BiffException Excel表格的格式不是xls
-	 * @exception IOException 读文件时发生异常。
+	 * @exception java.io.FileNotFoundException 系统中没有找到该文件时，抛出异常。
+	 * @exception jxl.read.biff.BiffException Excel表格的格式不是xls
+	 * @exception java.io.IOException 读文件时发生异常。
 	 * @exception IndexOutOfBoundsException 读取的工作表数量、单元格的行数或者越界。
-	 * @exception Exception 关闭文件失败时抛出异常
+	 * @exception java.lang.Exception 关闭文件失败时抛出异常
 	 */
 	public static ArrayList<Student> readExcel(String excelPath) {
 
@@ -145,13 +145,13 @@ public class ExcelUtil {
 	 * @date 2019-06-22 15:30:23
 	 * @Description 将学生列表的数据写到Excel的方法
 	 * @param students 学生列表
-	 * @return void 
+	 * void 
 	 * @see  Student
 	 * @exception NullPointerException File路径名为空。
-	 * @exception IOException 创建工作表时发生异常。
-	 * @exception RowsExceededException 添加单元格到工作表时，当写入的函数超过最大值时(10000以内不会)抛出异常。
-	 * @exception WriteException 添加单元格到工作表时，可能发生的异常。
-	 * @exception Exception 关闭workbook时发生异常。
+	 * @exception java.io.IOException 创建工作表时发生异常。
+	 * @exception jxl.write.biff.RowsExceededException 添加单元格到工作表时，当写入的函数超过最大值时(10000以内不会)抛出异常。
+	 * @exception jxl.write.WriteException 添加单元格到工作表时，可能发生的异常。
+	 * @exception java.lang.Exception 关闭workbook时发生异常。
 	 */
 	public static void writeExcel(ArrayList<Student> students) {
 

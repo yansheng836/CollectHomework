@@ -26,9 +26,9 @@ public class Student {
 	/**
 	 * @Title Student
 	 * @Description 构造方法
-	 * @param no
-	 * @param sno
-	 * @param sname
+	 * @param no 班级排位号（随机的，不是按照成绩排的）
+	 * @param sno 学号
+	 * @param sname 姓名
 	 */
 	public Student(String no, String sno, String sname) {
 		super();

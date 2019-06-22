@@ -26,11 +26,8 @@ public class TestIterator {
 	 * @author yansheng
 	 * @version v1.0
 	 * @date 2019-06-20 02:26:08
-	 * @Description TODO
-	 * @param args   
-	 * void 
-	 * @see  
-	 * @exception
+	 * @Description 测试在遍历list时删除元素
+	 * @param args 主方法参数
 	 */
 	public static void main(String[] args) {
 

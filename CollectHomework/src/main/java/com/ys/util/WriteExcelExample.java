@@ -34,7 +34,7 @@ public class WriteExcelExample {
 	 * @version v1.0
 	 * @date 2019-06-22 14:57:54
 	 * @Description 主要是为了测试在“写入数据到excel文件中”时如何捕获异常。
-	 * @param args   
+	 * @param args 主方法参数
 	 */
 	public static void main(String[] args) {
 

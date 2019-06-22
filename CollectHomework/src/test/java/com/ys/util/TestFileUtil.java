@@ -26,8 +26,7 @@ public class TestFileUtil {
 	 * @version v1.0
 	 * @date 2019-06-21 21:51:46
 	 * @Description 测试FileUtil类的方法。
-	 * @param args   
-	 * @return void 
+	 * @param args 主方法参数
 	 */
 	public static void main(String[] args) {
 
