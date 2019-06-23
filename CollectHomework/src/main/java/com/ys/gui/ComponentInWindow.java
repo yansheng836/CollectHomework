@@ -208,24 +208,23 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 			public void actionPerformed(ActionEvent e) {
 
 				// 1.获取点名册路径和文件夹路径信息
-//				String excelPath = "16计算机科学与技术3学生名单.xls";
-//				String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
+				// String excelPath = "16计算机科学与技术3学生名单.xls";
+				// String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
 				String excelPath = getExcelPath();
 				String dirPath = getDirPath();
 				// String excelPath = jtfExcel.getText();
 				// String dirPath = jtfPath.getText();
 				// 设置默认值
-//				if ("".equals(jtfExcel.getText())) {
-//					excelPath = jtfExcel.getText();
-//				}
-//				if (jtfPath.getText()!= null) {
-//					dirPath =jtfPath.getText();
-//				}
-				
-				
+				if ("".equals(jtfExcel.getText()) != true) {
+					excelPath = jtfExcel.getText();
+				}
+				if ("".equals(jtfPath.getText()) != true) {
+					dirPath = jtfPath.getText();
+				}
+
 				// System.out.println(excelPath);
 				// System.out.println(dirPath);
-				// jTextArea.setText("excelPath:" + excelPath + ",dirPath:" + dirPath + "\n");
+				 jTextArea.setText("--表格路径为:" + excelPath + "\n--文件夹路径为:" + dirPath + "\n\n");
 
 				// 2.读取表格和文件夹
 				ArrayList<Student> students = ExcelUtil.readExcel(excelPath);
@@ -274,7 +273,7 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 					System.out.println(student);
 				}
 
-				jTextArea.setText("");
+//				jTextArea.setText("");
 				jTextArea.append(result + "\n");
 				jTextArea.append("--1.已找到学生有 " + stuNum + " 名，学生列表为：\n");
 				for (Student student : studentFindList) {
