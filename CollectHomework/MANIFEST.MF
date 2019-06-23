@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: jxl.jar jxl-2.6.12-sources.jar
+Main-Class: com.ys.gui.CollectHomeworkMain
+
