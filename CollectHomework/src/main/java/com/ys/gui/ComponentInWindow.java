@@ -67,6 +67,26 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 	 */
 	static int count = 0;
 
+	// 定义两个变量，方便从主类传数据进来
+	String excelPath;
+	String dirPath;
+
+	public String getExcelPath() {
+		return excelPath;
+	}
+
+	public void setExcelPath(String excelPath) {
+		this.excelPath = excelPath;
+	}
+
+	public String getDirPath() {
+		return dirPath;
+	}
+
+	public void setDirPath(String dirPath) {
+		this.dirPath = dirPath;
+	}
+
 	public ComponentInWindow() {
 		init();
 		setVisible(true);
@@ -160,7 +180,7 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 
 		// 定义一个文本框，用于显示一些提示信息，行列
 		jTextArea = new JTextArea(9, 59);
-		jTextArea.setFont(new Font("console",Font.PLAIN, 22));
+		jTextArea.setFont(new Font("console", Font.PLAIN, 22));
 		// jTextArea.setText("这里将显示测试结果");console
 
 		// 如何设置事件监听
@@ -176,8 +196,8 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 		/*
 		 * 为了能再事件监听里面使用变量，这里统一进行定义
 		 */
-//		final String excelPath = "excelPath";
-//		final String dirPath;
+		// final String excelPath = "excelPath";
+		// final String dirPath;
 		// 存储测试用例
 		// ArrayList<Student> students = new ArrayList<Student>();
 
@@ -188,10 +208,21 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 			public void actionPerformed(ActionEvent e) {
 
 				// 1.获取点名册路径和文件夹路径信息
-				String excelPath = "16计算机科学与技术3学生名单.xls";
-				String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
+//				String excelPath = "16计算机科学与技术3学生名单.xls";
+//				String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
+				String excelPath = getExcelPath();
+				String dirPath = getDirPath();
 				// String excelPath = jtfExcel.getText();
 				// String dirPath = jtfPath.getText();
+				// 设置默认值
+//				if ("".equals(jtfExcel.getText())) {
+//					excelPath = jtfExcel.getText();
+//				}
+//				if (jtfPath.getText()!= null) {
+//					dirPath =jtfPath.getText();
+//				}
+				
+				
 				// System.out.println(excelPath);
 				// System.out.println(dirPath);
 				// jTextArea.setText("excelPath:" + excelPath + ",dirPath:" + dirPath + "\n");

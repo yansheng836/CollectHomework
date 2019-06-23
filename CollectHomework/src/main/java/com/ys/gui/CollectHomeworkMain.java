@@ -11,10 +11,14 @@ package com.ys.gui;
 public class CollectHomeworkMain {
 
 	public static void main(String[] args) {
-		// 测试方法1：利用GUI界面输入测试数据，然后将实验结果输出到excel表格中
 
+		// 为了方便测试，直接在这里输入输入路径
+		String excelPath = "16计算机科学与技术3学生名单.xls";
+		String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
 		
 		ComponentInWindow win = new ComponentInWindow();
+		win.setExcelPath(excelPath);
+		win.setDirPath(dirPath);
 		win.setBounds(400, 200, 1100, 600);
 		win.setTitle("查询未交作业的学生名单");
 	}
