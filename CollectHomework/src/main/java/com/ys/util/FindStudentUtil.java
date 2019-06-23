@@ -139,19 +139,19 @@ public class FindStudentUtil {
 	 */
 	public static String[] compareNumber(ArrayList<Student> students, ArrayList<String> fileList) {
 
-		Integer stuNum = students.size();
+		Integer classNum = students.size();
 		Integer fileNum = fileList.size();
 		// System.out.println("stuLen:"+stuLen);
 		// System.out.println("fileLen:"+fileLen);
 
 		String string = null;
-		if (stuNum == fileNum) {
-			string = "文件数量和学生列表数量一致！" + "学生列表有" + stuNum + "个学生，文件列表有" + fileNum + "个文件。";
+		if (classNum == fileNum) {
+			string = "文件数量和学生列表数量一致！" + "学生列表有" + classNum + "个学生，文件列表有" + fileNum + "个文件。";
 		} else {
-			string = "文件数量和学生列表数量不一致！" + "学生列表有" + stuNum + "个学生，文件列表有" + fileNum + "个文件。";
+			string = "文件数量和学生列表数量不一致！" + "学生列表有" + classNum + "个学生，文件列表有" + fileNum + "个文件。";
 		}
 
-		String[] compareResults = { string, stuNum.toString(), fileNum.toString() };
+		String[] compareResults = { string, classNum.toString(), fileNum.toString() };
 
 		return compareResults;
 

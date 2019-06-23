@@ -38,7 +38,7 @@ public class FileUtil {
 
 		// 遍历path下的文件和目录，存进File数组中
 		File[] files = file.listFiles();
-		System.out.println("在\"" + dirPath + "\" 路径下有  " + files.length + " 个文件。");
+//		System.out.println("在\"" + dirPath + "\" 路径下有  " + files.length + " 个文件。");
 		String fileName;
 		for (File file1 : files) {
 			// 1.（含盘符的）绝对路径
