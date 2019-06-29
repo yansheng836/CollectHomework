@@ -2,13 +2,18 @@
 #都应该使用“word”过滤器，而不是默认的当做二进制文件进行对比。 “word”过滤器是什么？
 #我们现在就来设置它。我们会对 Git 进行配置，令其能够借助 docx2txt （需要安装）
 #程序将 Word 文档转为可读文本文件，这样不同的文件间就能够正确比较了。 
-*.docx diff=word
+#*.docx diff=word
 
 
 #把HTML识别为java，linguist：语言学家，学多种外语的人
-*.html linguist-language=java
-*.css linguist-language=java
-*.js linguist-language=java
+#*.html linguist-language=java
+#*.css linguist-language=java
+#*.js linguist-language=java
+
+#之前是将不同格式的文件统一识别为java，现在是不将对应代码提交到识别库中
+*.html linguist-vendored
+*.css linguist-vendored
+*.js linguist-vendored
 
 
 
