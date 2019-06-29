@@ -49,6 +49,7 @@ public class SimpleTest1 extends JFrame {
 		// 这是关键的2句
 		scrollPane.setPreferredSize(new Dimension(xPixels, yPixels));
 		button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				label = new JLabel(image);
 				imagePanel.add(label);

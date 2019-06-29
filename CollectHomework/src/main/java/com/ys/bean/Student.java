@@ -61,6 +61,12 @@ public class Student {
 		this.sname = sname;
 	}
 
+	/**
+	 * <p>Title: toString</p>
+	 * <p>Description: </p>
+	 * @return
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Student [no=" + no + ", sno=" + sno + ", sname=" + sname + "]";

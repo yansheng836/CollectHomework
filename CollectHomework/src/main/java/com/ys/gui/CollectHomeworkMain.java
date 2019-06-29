@@ -1,8 +1,8 @@
 package com.ys.gui;
 
 /**
- * <p>Title: </p>
- * <p>Description:图形界面的主类 </p>
+ * <p>Title:图形界面的主类 。 </p>
+ * <p>Description:图形界面的主类 。</p>
  * <p>Company: </p>
  * @author yansheng
  * @date 2019-06-19 14:07:11

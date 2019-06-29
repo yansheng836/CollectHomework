@@ -44,6 +44,7 @@ public class SimpleTest extends JFrame {
 		imagePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		scrollPane = new JScrollPane(imagePanel);
 		button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				label = new JLabel(image);
 				imagePanel.add(label);

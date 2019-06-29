@@ -34,21 +34,32 @@ public class FileUtil {
 
 		// 用于存储文件列表
 		ArrayList<String> fileList = new ArrayList<String>();
-		File file = new File(dirPath);
+		File file = null;
+		try {
+			file = new File(dirPath);
+		} catch (NullPointerException e) {
+			System.out.println("读取文件夹时发生NullPointerException异常，即文件夹路径为空。");
+			e.printStackTrace();
+		}
 
-		// 遍历path下的文件和目录，存进File数组中
-		File[] files = file.listFiles();
-//		System.out.println("在\"" + dirPath + "\" 路径下有  " + files.length + " 个文件。");
-		String fileName;
-		for (File file1 : files) {
-			// 1.（含盘符的）绝对路径
-			// System.out.println(file1);
-			// System.out.println(file1.toString());
+		try {
+			// 遍历path下的文件和目录，存进File数组中
+			File[] files = file.listFiles();
+			// System.out.println("在\"" + dirPath + "\" 路径下有 " + files.length + " 个文件。");
+			String fileName;
+			for (File file1 : files) {
+				// 1.（含盘符的）绝对路径
+				// System.out.println(file1);
+				// System.out.println(file1.toString());
 
-			// 2.文件名
-			// System.out.println(file1.getName());
-			fileName = file1.getName();
-			fileList.add(fileName);
+				// 2.文件名
+				// System.out.println(file1.getName());
+				fileName = file1.getName();
+				fileList.add(fileName);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("读取文件夹时发生NullPointerException异常，表示该文件夹不存在（于电脑的文件系统中）。");
+			e.printStackTrace();
 		}
 
 		// 遍历列表，验证输出

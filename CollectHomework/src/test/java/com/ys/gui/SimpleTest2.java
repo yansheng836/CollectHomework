@@ -45,10 +45,12 @@ class ModifiedFlowLayout extends FlowLayout {
 		super(align, hgap, vgap);
 	}
 
+	@Override
 	public Dimension minimumLayoutSize(Container target) {
 		return computeSize(target, false);
 	}
 
+	@Override
 	public Dimension preferredLayoutSize(Container target) {
 		return computeSize(target, true);
 	}
@@ -95,6 +97,14 @@ class ModifiedFlowLayout extends FlowLayout {
 	}
 }
 
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Company: </p>
+ * @author yansheng
+ * @date 2019-06-29 22:54:57
+ * @version v1.0 
+ */
 public class SimpleTest2 extends JFrame {
 	private ImageIcon image;
 	private JLabel label;
@@ -115,6 +125,7 @@ public class SimpleTest2 extends JFrame {
 		// 这是关键的2句 //
 		scrollPane.setPreferredSize(new Dimension(xPixels, yPixels));
 		button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				label = new JLabel(image);
 				imagePanel.add(label);

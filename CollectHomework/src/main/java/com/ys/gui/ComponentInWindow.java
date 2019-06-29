@@ -19,14 +19,14 @@ import com.ys.util.FileUtil;
 import com.ys.util.FindStudentUtil;
 
 /**
- * <p>Title: </p>
- * <p>Description: </p>
+ * <p>Title: 窗口的具体实现。</p>
+ * <p>Description: 窗口的相关组件，以及事件监听。</p>
  * <p>Company: </p>
  * @author yansheng
  * @date 2019-06-19 14:07:01
  * @version v1.0 
  */
-public class ComponentInWindow extends JFrame { // 窗口组件
+public class ComponentInWindow extends JFrame {
 
 	/**  
 	 * @Fields serialVersionUID : TODO
@@ -95,8 +95,10 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 
 	void init() {
 		// FlowLayout flowLayout = new FlowLayout();
-		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT); // 在流行布局中每个组件都居中显示
-		flowLayout.setVgap(15); // 设置布局里面的垂直间距为10px,默认为5px
+		// 在流行布局中每个组件都居中显示
+		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
+		// 设置布局里面的垂直间距为10px,默认为5px
+		flowLayout.setVgap(15);
 		this.setLayout(flowLayout);
 
 		jlExcel = new JLabel("请输入表格路径：");
@@ -222,9 +224,8 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 					dirPath = jtfPath.getText();
 				}
 
-				// System.out.println(excelPath);
-				// System.out.println(dirPath);
-				 jTextArea.setText("--表格路径为:" + excelPath + "\n--文件夹路径为:" + dirPath + "\n\n");
+				// System.out.println("--表格路径为:" + excelPath + "\n--文件夹路径为:" + dirPath + "\n\n");
+				jTextArea.setText("--表格路径为:" + excelPath + "\n--文件夹路径为:" + dirPath + "\n\n");
 
 				// 2.读取表格和文件夹
 				ArrayList<Student> students = ExcelUtil.readExcel(excelPath);
@@ -242,8 +243,7 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 				int fileNum = Integer.parseInt(compareResults[2]);
 
 				System.out.println("result:" + result);
-				// System.out.println("classNum:" + classNum);
-				// System.out.println("fileNum:" + fileNum);
+				// System.out.println("classNum:" + classNum+",fileNum:" + fileNum);
 
 				// 3.取得返回的列表结果
 				String sign = "sno";
@@ -273,7 +273,7 @@ public class ComponentInWindow extends JFrame { // 窗口组件
 					System.out.println(student);
 				}
 
-//				jTextArea.setText("");
+				// jTextArea.setText("");
 				jTextArea.append(result + "\n");
 				jTextArea.append("--1.已找到学生有 " + stuNum + " 名，学生列表为：\n");
 				for (Student student : studentFindList) {

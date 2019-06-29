@@ -145,7 +145,7 @@ public class FindStudentUtil {
 		// System.out.println("fileLen:"+fileLen);
 
 		String string = null;
-		if (classNum == fileNum) {
+		if (classNum.equals(fileNum)) {
 			string = "文件数量和学生列表数量一致！" + "学生列表有" + classNum + "个学生，文件列表有" + fileNum + "个文件。";
 		} else {
 			string = "文件数量和学生列表数量不一致！" + "学生列表有" + classNum + "个学生，文件列表有" + fileNum + "个文件。";

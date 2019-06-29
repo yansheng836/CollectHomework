@@ -31,7 +31,7 @@ import javax.swing.JTextField;
  * @date 2019-06-23 18:59:52
  * @version v1.0 
  */
-public class Win {
+public class TestListener {
 
 	/**
 	 * @Title main
@@ -53,6 +53,10 @@ public class Win {
 }
 
 class JFram extends JFrame {
+	/**  
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
 	JTextField jtfFileNo;
 	JLabel jlExcel;
 	JTextArea jTextArea;
@@ -102,7 +106,8 @@ class JFram extends JFrame {
 				String string = e.getActionCommand();
 				System.out.println("e.getActionCommand():" + string);
 				System.out.println("jtfFileNo:" + jtfFileNo.getText());
-				JOptionPane.showMessageDialog(container, (Object)"你好", "消息对话框", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(container, (Object) "你好", "消息对话框",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		//

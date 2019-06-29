@@ -39,8 +39,8 @@ public class ExcelUtil {
 	 * ArrayList<Student> 返回学生集
 	 * @see  Student 学生类详见Student
 	 * @exception NullPointerException	传入参数为空时，抛出异常。
-	 * @exception java.io.FileNotFoundException 系统中没有找到该文件时，抛出异常。
-	 * @exception jxl.read.biff.BiffException Excel表格的格式不是xls
+	 * @exception FileNotFoundException 系统中没有找到该文件时，抛出异常。
+	 * @exception BiffException Excel表格的格式不是xls
 	 * @exception java.io.IOException 读文件时发生异常。
 	 * @exception IndexOutOfBoundsException 读取的工作表数量、单元格的行数或者越界。
 	 * @exception java.lang.Exception 关闭文件失败时抛出异常
