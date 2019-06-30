@@ -53,6 +53,8 @@ public class Main {
 		for (Student student : noFoundStuList) {
 			System.out.println(student);
 		}
+		
+		ExcelUtil.writeExcel(excelPath, students);
 
 	}
 

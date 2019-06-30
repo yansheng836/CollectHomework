@@ -44,7 +44,7 @@ public class TestExcelUtil {
 		}
 		
 		// 测试方法2--写excel表格
-		ExcelUtil.writeExcel(students);
+		ExcelUtil.writeExcel(excelPath, students);
 
 	}
 

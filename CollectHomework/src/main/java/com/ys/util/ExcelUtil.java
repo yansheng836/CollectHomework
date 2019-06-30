@@ -41,9 +41,9 @@ public class ExcelUtil {
 	 * @exception NullPointerException	传入参数为空时，抛出异常。
 	 * @exception FileNotFoundException 系统中没有找到该文件时，抛出异常。
 	 * @exception BiffException Excel表格的格式不是xls
-	 * @exception java.io.IOException 读文件时发生异常。
+	 * @exception IOException 读文件时发生异常。
 	 * @exception IndexOutOfBoundsException 读取的工作表数量、单元格的行数或者越界。
-	 * @exception java.lang.Exception 关闭文件失败时抛出异常
+	 * @exception Exception 关闭文件失败时抛出异常
 	 */
 	public static ArrayList<Student> readExcel(String excelPath) {
 
@@ -145,6 +145,7 @@ public class ExcelUtil {
 	 * @date 2019-06-22 15:30:23
 	 * @Description 将学生列表的数据写到Excel的方法
 	 * @param students 学生列表
+	 * @param excelPath 读取的excel表格路径
 	 * void 
 	 * @see  Student
 	 * @exception NullPointerException File路径名为空。
@@ -153,9 +154,9 @@ public class ExcelUtil {
 	 * @exception jxl.write.WriteException 添加单元格到工作表时，可能发生的异常。
 	 * @exception java.lang.Exception 关闭workbook时发生异常。
 	 */
-	public static void writeExcel(ArrayList<Student> students) {
-
-		String excelPath = "16计算机科学与技术3--未交作业的学生名单.xls";
+	public static void writeExcel(String excelPath1,ArrayList<Student> students) {
+		// 保存数据的excel文件名
+		String excelPath = getSaveExcelFileName(excelPath1);
 
 		// 1.1 打开文件
 		WritableWorkbook workbook = null;
@@ -222,4 +223,23 @@ public class ExcelUtil {
 
 	}
 
+	
+	/**
+	 * @Title getSaveExcelFileName
+	 * @author yansheng
+	 * @version v1.0
+	 * @date 2019-06-30 11:47:47
+	 * @Description 设置需要保持的数据的excel的文件名
+	 * @param excelPath
+	 * @return   
+	 * String 
+	 */
+	public static String getSaveExcelFileName(String excelPath) {
+		// 提取不含扩展名的文件名
+		String perfix = excelPath.substring(0, excelPath.lastIndexOf("."));
+		String excelPath1 = perfix+"--未交作业的学生名单.xls";
+		
+		
+		return excelPath1;
+	}
 }
