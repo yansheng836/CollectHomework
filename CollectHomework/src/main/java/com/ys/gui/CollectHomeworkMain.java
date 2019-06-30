@@ -13,8 +13,8 @@ public class CollectHomeworkMain {
 	public static void main(String[] args) {
 
 		// 为了方便测试，直接在这里输入输入路径
-		String excelPath = "16计算机科学与技术3学生名单.xls";
-		String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
+		String excelPath = "./测试用班级点名册.xls";
+		String dirPath = "./测试用文件夹--已收作业";
 		
 		ComponentInWindow win = new ComponentInWindow();
 		win.setExcelPath(excelPath);

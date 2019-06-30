@@ -19,7 +19,7 @@ import com.ys.util.FindStudentUtil;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		String excelPath = "16计算机科学与技术3学生名单.xls";
+		String excelPath = "./测试用班级点名册.xls";
 		ArrayList<Student> students = ExcelUtil.readExcel(excelPath);
 		// 遍历进行验证
 		// for (Student student : students) {
@@ -27,7 +27,7 @@ public class Main {
 		// }
 
 		// 文件夹路径
-		String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
+		String dirPath = "./测试用文件夹--已收作业";
 		ArrayList<String> fileList = FileUtil.readDir(dirPath);
 		
 		String[] compareResults = FindStudentUtil.compareNumber(students, fileList);
@@ -44,7 +44,7 @@ public class Main {
 		ArrayList<ArrayList<Student>> arrayStuList = FindStudentUtil.findStu(students, fileList, sign);
 		ArrayList<Student> studentFindList = arrayStuList.get(0);
 		ArrayList<Student> noFoundStuList = arrayStuList.get(1);
-		System.out.println("\n在TestFindStudentUtil中遍历已交作业的学生：");
+		System.out.println("\n在Main中遍历已交作业的学生：");
 		for (Student student : studentFindList) {
 			System.out.println(student);
 		}
