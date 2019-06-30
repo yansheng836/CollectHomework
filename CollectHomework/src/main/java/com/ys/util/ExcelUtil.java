@@ -109,7 +109,7 @@ public class ExcelUtil {
 
 			// 如果上面的语句都没有发生异常，
 			System.out.println("----读Excel成功。----\n");
-			
+
 		} catch (NullPointerException e) {
 			System.out.println("NullPointerException:File路径名为空。");
 			e.printStackTrace();
@@ -154,7 +154,7 @@ public class ExcelUtil {
 	 * @exception jxl.write.WriteException 添加单元格到工作表时，可能发生的异常。
 	 * @exception java.lang.Exception 关闭workbook时发生异常。
 	 */
-	public static void writeExcel(String excelPath1,ArrayList<Student> students) {
+	public static void writeExcel(String excelPath1, ArrayList<Student> students) {
 		// 保存数据的excel文件名
 		String excelPath = getSaveExcelFileName(excelPath1);
 
@@ -195,7 +195,7 @@ public class ExcelUtil {
 
 			workbook.write();
 			// 如果上面的语句都没有发生异常，
-			System.out.println("\n----写数据到("+excelPath+")成功。----\n");
+			System.out.println("\n----写数据到(" + excelPath + ")成功。----\n");
 
 		} catch (NullPointerException e) {
 			System.out.println("NullPointerException:File路径名为空。");
@@ -223,7 +223,6 @@ public class ExcelUtil {
 
 	}
 
-	
 	/**
 	 * @Title getSaveExcelFileName
 	 * @author yansheng
@@ -236,10 +235,12 @@ public class ExcelUtil {
 	 */
 	public static String getSaveExcelFileName(String excelPath) {
 		// 提取不含扩展名的文件名
+		// System.out.println("excelPath:"+excelPath);
 		String perfix = excelPath.substring(0, excelPath.lastIndexOf("."));
-		String excelPath1 = perfix+"--未交作业的学生名单.xls";
-		
-		
+		String excelPath1 = perfix + "--未交作业的学生名单.xls";
+		// System.out.println("perfix:" + perfix);
+		// System.out.println("excelPath1:" + excelPath1);
+
 		return excelPath1;
 	}
 }

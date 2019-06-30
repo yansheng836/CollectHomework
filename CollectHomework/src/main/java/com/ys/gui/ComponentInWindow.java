@@ -61,15 +61,13 @@ public class ComponentInWindow extends JFrame {
 	// 显示结果
 	JTextArea jTextArea;
 
-	// 计数-测试用例个数，同时作为TestCase的id
-	/**  
-	 * @Fields count : 
-	 */
-	static int count = 0;
-
 	// 定义两个变量，方便从主类传数据进来
 	String excelPath;
 	String dirPath;
+	String sign;
+
+	// 没有找到的学生列表
+	ArrayList<Student> noFoundStuList;
 
 	public String getExcelPath() {
 		return excelPath;
@@ -85,6 +83,14 @@ public class ComponentInWindow extends JFrame {
 
 	public void setDirPath(String dirPath) {
 		this.dirPath = dirPath;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
 	}
 
 	public ComponentInWindow() {
@@ -219,9 +225,13 @@ public class ComponentInWindow extends JFrame {
 				// 设置默认值
 				if ("".equals(jtfExcel.getText()) != true) {
 					excelPath = jtfExcel.getText();
+				}else {
+					jtfExcel.setText(excelPath);
 				}
 				if ("".equals(jtfPath.getText()) != true) {
 					dirPath = jtfPath.getText();
+				}else {
+					jtfPath.setText(dirPath);
 				}
 
 				// System.out.println("--表格路径为:" + excelPath + "\n--文件夹路径为:" + dirPath + "\n\n");
@@ -246,11 +256,11 @@ public class ComponentInWindow extends JFrame {
 				// System.out.println("classNum:" + classNum+",fileNum:" + fileNum);
 
 				// 3.取得返回的列表结果
-				String sign = "sno";
+				// String sign = "sno";
 				ArrayList<ArrayList<Student>> arrayStuList = FindStudentUtil.findStu(students, fileList,
 						sign);
 				ArrayList<Student> studentFindList = arrayStuList.get(0);
-				ArrayList<Student> noFoundStuList = arrayStuList.get(1);
+				noFoundStuList = arrayStuList.get(1);
 
 				// jlClassNo，jtfClassNo，jlStuNo，jtfStuNo，jlNoStuNo，jtfNoStuNo，jlFileNo，jtfFileNo
 				int stuNum = studentFindList.size();
@@ -298,9 +308,12 @@ public class ComponentInWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				// ExcelUtil.writeExcel(students);
-				jTextArea.setText("你点击了保存数据到Excel表格的按钮。");
+				
+				ExcelUtil.writeExcel(excelPath, noFoundStuList);
+				
+				// 显示保存信息
+				String saveExcelPath  = ExcelUtil.getSaveExcelFileName(excelPath);
+				jTextArea.setText("----写数据到(" + saveExcelPath + ")成功。----\n");
 			}
 		});
 	}
