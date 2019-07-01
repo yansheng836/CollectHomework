@@ -17,7 +17,6 @@ public class TestGlobalFont {
 		JFrame jFrame = new JFrame("测试设置全局字体");
 		// 初始化窗口
 		init(jFrame);
-		
 		jFrame.setBounds(800, 400, 400, 400);
 		jFrame.setVisible(true);
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,6 +44,11 @@ public class TestGlobalFont {
 		JButton jButton1 = new JButton("这个按钮的字体是微软雅黑");
 		jButton1.setFont(new Font("微软雅黑", Font.BOLD, 25));
 		jFrame.add(jButton1);
+		
+		//嵌入HTML代码，换行输出JLabel
+		int x = 10, y = 20;
+		JLabel jLabel2 = new JLabel("<html><body><p>" + x + "<br>" + y + "</p></body></html>");
+		jFrame.add(jLabel2);
 	}
 
 	

@@ -15,33 +15,16 @@ public class CollectHomeworkMain {
 		// 为了方便测试，直接在这里输入输入路径
 		String excelPath = "./测试用班级点名册.xls";
 		String dirPath = "./测试用文件夹--已收作业";
-		
+
 		// 按照学号还是按照姓名进行查找，只能是sno、sname中的一个
 		String sign = "sno";
-		
+
 		ComponentInWindow win = new ComponentInWindow();
-//		InitGlobalFont(new Font("宋体", Font.PLAIN, 12));  //统一设置字体
-		 
-		 
+
 		win.setExcelPath(excelPath);
 		win.setDirPath(dirPath);
 		win.setSign(sign);
 		win.setBounds(400, 200, 1100, 600);
 		win.setTitle("查询未交作业的学生名单");
 	}
-	
-	/**
-	 * 统一设置字体，父界面设置之后，所有由父界面进入的子界面都不需要再次设置字体
-	 */
-//	private static void InitGlobalFont(Font font) {
-//		FontUIResource fontRes = new FontUIResource(font);
-//		for (Enumeration<Object> keys = UIManager.getDefaults().keys(); keys.hasMoreElements();) {
-//			Object key = keys.nextElement();
-//			Object value = UIManager.get(key);
-//			if (value instanceof FontUIResource) {
-//				UIManager.put(key, fontRes);
-//			}
-//		}
-//	}
-
 }
