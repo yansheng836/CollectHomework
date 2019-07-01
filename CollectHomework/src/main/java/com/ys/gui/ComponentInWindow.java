@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,11 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 import com.ys.bean.Student;
 import com.ys.util.ExcelUtil;
-import com.ys.util.FileUtil;
-import com.ys.util.FindStudentUtil;
 
 /**
  * <p>Title: 窗口的具体实现。</p>
@@ -32,8 +33,6 @@ public class ComponentInWindow extends JFrame {
 	 * @Fields serialVersionUID : TODO
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private BtReadDirListener btReadDirListener;
 
 	// 输入文本框，输入三角形三条边的值
 	JTextField jtfExcel;
@@ -69,6 +68,9 @@ public class ComponentInWindow extends JFrame {
 	// 没有找到的学生列表
 	ArrayList<Student> noFoundStuList;
 
+	// 按钮的监听器
+	ButtonListen buttonListen;
+
 	public String getExcelPath() {
 		return excelPath;
 	}
@@ -94,12 +96,28 @@ public class ComponentInWindow extends JFrame {
 	}
 
 	public ComponentInWindow() {
+		InitGlobalFont(new Font("宋体", Font.PLAIN, 5));  // 统一设置字体
 		init();
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	/**
+	 * 统一设置字体，父界面设置之后，所有由父界面进入的子界面都不需要再次设置字体
+	 */
+	private static void InitGlobalFont(Font font) {
+		FontUIResource fontRes = new FontUIResource(font);
+		for (Enumeration<Object> keys = UIManager.getDefaults().keys(); keys.hasMoreElements();) {
+			Object key = keys.nextElement();
+			Object value = UIManager.get(key);
+			if (value instanceof FontUIResource) {
+				UIManager.put(key, fontRes);
+			}
+		}
+	}
+
 	void init() {
+
 		// FlowLayout flowLayout = new FlowLayout();
 		// 在流行布局中每个组件都居中显示
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
@@ -112,16 +130,12 @@ public class ComponentInWindow extends JFrame {
 
 		jtfExcel = new JTextField(65);
 		jtfExcel.setFont(new Font("宋体", Font.BOLD, 23));
-		this.add(jlExcel);
-		this.add(jtfExcel);
 
 		jlPath = new JLabel("请输入文件夹路径：");
 		jlPath.setFont(new Font("宋体", Font.BOLD, 25));
 
 		jtfPath = new JTextField(63);
 		jtfPath.setFont(new Font("宋体", Font.BOLD, 23));
-		this.add(jlPath);
-		this.add(jtfPath);
 
 		int x = 10, y = 20;
 		// jLabelB = new JLabel("<html><body><p>" + x + "<br>" + y + "</p></body></html>");
@@ -131,6 +145,7 @@ public class ComponentInWindow extends JFrame {
 		btFindBySno = new JButton("按学号进行查找文件");
 		btFindBySname = new JButton("按姓名进行查找文件");
 		btSave = new JButton("将未交作业的学生名单保存到excel文件中");
+
 		JButton button = new JButton("换行按钮");
 		button.setVisible(true);
 
@@ -140,12 +155,6 @@ public class ComponentInWindow extends JFrame {
 		btFindBySname.setFont(new Font("宋体", Font.BOLD, 22));
 		btSave.setFont(new Font("宋体", Font.BOLD, 22));
 		button.setFont(new Font("宋体", Font.BOLD, 22));
-
-		this.add(btReadExcel);
-		this.add(btReadDir);
-		this.add(btFindBySno);
-		this.add(btFindBySname);
-		this.add(button);
 
 		/*
 		 * 显示班级总人数，已交作业的学生人数，未交作业的人数，文件夹下文件总数
@@ -171,6 +180,53 @@ public class ComponentInWindow extends JFrame {
 		jtfFileNo = new JTextField(2);
 		jtfFileNo.setFont(new Font("宋体", Font.BOLD, 23));
 
+		// 定义一个文本框，用于显示一些提示信息，行列
+		jTextArea = new JTextArea(9, 59);
+		jTextArea.setFont(new Font("console", Font.PLAIN, 22));
+		// jTextArea.setText("这里将显示测试结果");
+
+		// 添加滚动窗格，当内容超过范围时，显示滚动条
+		JScrollPane jsp1 = new JScrollPane(jTextArea);
+
+		buttonListen = new ButtonListen();
+		buttonListen.setBtFindBySname(btFindBySname);
+		buttonListen.setBtFindBySno(btFindBySno);
+		buttonListen.setBtReadDir(btReadDir);
+		buttonListen.setBtReadExcel(btReadExcel);
+		buttonListen.setBtSave(btSave);
+
+		buttonListen.setDirPath(getDirPath());
+		buttonListen.setExcelPath(getExcelPath());
+		buttonListen.setSign(getSign());
+
+		buttonListen.setjTextArea(jTextArea);
+		buttonListen.setJtfClassNo(jtfClassNo);
+		buttonListen.setJtfExcel(jtfExcel);
+		buttonListen.setJtfFileNo(jtfFileNo);
+		buttonListen.setJtfNoStuNo(jtfNoStuNo);
+		buttonListen.setJtfPath(jtfPath);
+		buttonListen.setJtfStuNo(jtfStuNo);
+		buttonListen.setNoFoundStuList(noFoundStuList);
+
+		btReadExcel.addActionListener(buttonListen);
+		btReadDir.addActionListener(buttonListen);
+		btFindBySno.addActionListener(buttonListen);
+		btFindBySname.addActionListener(buttonListen);
+		btSave.addActionListener(buttonListen);
+
+		// 标签
+		this.add(jlExcel);
+		this.add(jtfExcel);
+		this.add(jlPath);
+		this.add(jtfPath);
+
+		// button
+		this.add(btReadExcel);
+		this.add(btReadDir);
+		this.add(btFindBySno);
+		this.add(btFindBySname);
+		this.add(button);
+
 		this.add(jlClassNo);
 		this.add(jtfClassNo);
 
@@ -186,136 +242,23 @@ public class ComponentInWindow extends JFrame {
 		//
 		this.add(btSave);
 
-		// 定义一个文本框，用于显示一些提示信息，行列
-		jTextArea = new JTextArea(9, 59);
-		jTextArea.setFont(new Font("console", Font.PLAIN, 22));
-		// jTextArea.setText("这里将显示测试结果");console
-
-		// 如何设置事件监听
-		// btReadDir.addActionListener(btReadDirListener);
-		// btReadDirListener.setjTextArea(jTextArea);
-		// jTextArea = btReadDirListener.getjTextArea();
-
-		// 添加滚动窗格，当内容超过范围时，显示滚动条
-		JScrollPane jsp1 = new JScrollPane(jTextArea);
 		// this.add(jTextArea);
 		this.add(jsp1);
-
-		/*
-		 * 为了能再事件监听里面使用变量，这里统一进行定义
-		 */
-		// final String excelPath = "excelPath";
-		// final String dirPath;
-		// 存储测试用例
-		// ArrayList<Student> students = new ArrayList<Student>();
-
-		// 为“确认输入”按钮设置监听事件
-		btReadExcel.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				// 1.获取点名册路径和文件夹路径信息
-				// String excelPath = "16计算机科学与技术3学生名单.xls";
-				// String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3班Linux实验报告";
-				String excelPath = getExcelPath();
-				String dirPath = getDirPath();
-				// String excelPath = jtfExcel.getText();
-				// String dirPath = jtfPath.getText();
-				// 设置默认值
-				if ("".equals(jtfExcel.getText()) != true) {
-					excelPath = jtfExcel.getText();
-				}else {
-					jtfExcel.setText(excelPath);
-				}
-				if ("".equals(jtfPath.getText()) != true) {
-					dirPath = jtfPath.getText();
-				}else {
-					jtfPath.setText(dirPath);
-				}
-
-				// System.out.println("--表格路径为:" + excelPath + "\n--文件夹路径为:" + dirPath + "\n\n");
-				jTextArea.setText("--表格路径为:" + excelPath + "\n--文件夹路径为:" + dirPath + "\n\n");
-
-				// 2.读取表格和文件夹
-				ArrayList<Student> students = ExcelUtil.readExcel(excelPath);
-				// 遍历进行验证
-				// for (Student student : students) {
-				// System.out.println(student);
-				// }
-
-				ArrayList<String> fileList = FileUtil.readDir(dirPath);
-
-				// 3.取得返回的数据比较结果
-				String[] compareResults = FindStudentUtil.compareNumber(students, fileList);
-				String result = compareResults[0];
-				int classNum = Integer.parseInt(compareResults[1]);
-				int fileNum = Integer.parseInt(compareResults[2]);
-
-				System.out.println("result:" + result);
-				// System.out.println("classNum:" + classNum+",fileNum:" + fileNum);
-
-				// 3.取得返回的列表结果
-				// String sign = "sno";
-				ArrayList<ArrayList<Student>> arrayStuList = FindStudentUtil.findStu(students, fileList,
-						sign);
-				ArrayList<Student> studentFindList = arrayStuList.get(0);
-				noFoundStuList = arrayStuList.get(1);
-
-				// jlClassNo，jtfClassNo，jlStuNo，jtfStuNo，jlNoStuNo，jtfNoStuNo，jlFileNo，jtfFileNo
-				int stuNum = studentFindList.size();
-				int noStuNum = noFoundStuList.size();
-
-				// 显示数量信息
-				jtfClassNo.setText(String.valueOf(classNum));
-				jtfStuNo.setText(String.valueOf(stuNum));
-				jtfNoStuNo.setText(String.valueOf(noStuNum));
-				jtfFileNo.setText(String.valueOf(fileNum));
-
-				System.out.println("在TestFindStudentUtil中遍历:");
-				System.out.println("--1.已找到学生有 " + stuNum + " 名，学生列表为：");
-				for (Student student : studentFindList) {
-					System.out.println(student);
-				}
-
-				System.out.println("\n--2.未找到学生有 " + noStuNum + " 名，学生列表为：");
-				for (Student student : noFoundStuList) {
-					System.out.println(student);
-				}
-
-				// jTextArea.setText("");
-				jTextArea.append(result + "\n");
-				jTextArea.append("--1.已找到学生有 " + stuNum + " 名，学生列表为：\n");
-				for (Student student : studentFindList) {
-					// 获取原内容，增加换行符，再拼接list当前值
-					// System.getProperty("line.separator") 为换行，当然"\n"也可以
-					// jTextArea.append(jTextArea.getText() + System.getProperty("line.separator") + temp);
-					jTextArea.append(student.toString() + System.getProperty("line.separator"));
-				}
-
-				jTextArea.append("\n--2.未找到学生有 " + noStuNum + " 名，学生列表为：\n");
-				for (Student student : noFoundStuList) {
-					jTextArea.append(student.toString() + System.getProperty("line.separator"));
-				}
-
-				// ExcelUtil.writeExcel(students);
-
-			}
-		});
-
-		// 保存文件的事件监听
+		
+		
 		btSave.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				ExcelUtil.writeExcel(excelPath, noFoundStuList);
-				
+
 				// 显示保存信息
-				String saveExcelPath  = ExcelUtil.getSaveExcelFileName(excelPath);
+				String saveExcelPath = ExcelUtil.getSaveExcelFileName(excelPath);
 				jTextArea.setText("----写数据到(" + saveExcelPath + ")成功。----\n");
+
 			}
 		});
+
 	}
 
 }
