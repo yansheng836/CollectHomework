@@ -19,7 +19,8 @@ import com.ys.util.FindStudentUtil;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		String excelPath = "./测试用班级点名册.xls";
+//		String excelPath = "./测试用班级点名册.xls";
+		String excelPath = "./16计算机科学与技术3学生名单.xls";
 		ArrayList<Student> students = ExcelUtil.readExcel(excelPath);
 		// 遍历进行验证
 		// for (Student student : students) {
@@ -27,7 +28,9 @@ public class Main {
 		// }
 
 		// 文件夹路径
-		String dirPath = "./测试用文件夹--已收作业";
+//		String dirPath = "./测试用文件夹--已收作业";
+//		String dirPath = "F:\\Google\\downloads\\新建文件夹";
+		String dirPath = "F:\\Google\\downloads\\新建PDF";
 		ArrayList<String> fileList = FileUtil.readDir(dirPath);
 		
 		String[] compareResults = FindStudentUtil.compareNumber(students, fileList);
@@ -40,16 +43,17 @@ public class Main {
 		System.out.println("fileNum:"+fileNum);
 		
 		
+//		String sign = "sno";
 		String sign = "sno";
 		ArrayList<ArrayList<Student>> arrayStuList = FindStudentUtil.findStu(students, fileList, sign);
 		ArrayList<Student> studentFindList = arrayStuList.get(0);
 		ArrayList<Student> noFoundStuList = arrayStuList.get(1);
-		System.out.println("\n在Main中遍历已交作业的学生：");
+		System.out.println("\nMain:已交作业的学生人数："+studentFindList.size()+",遍历:");
 		for (Student student : studentFindList) {
 			System.out.println(student);
 		}
 
-		System.out.println("\n遍历未交作业的学生：");
+		System.out.println("\n未交作业的学生人数："+ noFoundStuList.size()+",遍历:");
 		for (Student student : noFoundStuList) {
 			System.out.println(student);
 		}
