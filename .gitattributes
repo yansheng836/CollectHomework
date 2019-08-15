@@ -10,10 +10,12 @@
 #*.css linguist-language=java
 #*.js linguist-language=java
 
-#之前是将不同格式的文件统一识别为java，现在是不将对应代码提交到识别库中
-*.html linguist-vendored
-*.css linguist-vendored
-*.js linguist-vendored
+# 之前是将不同格式的文件统一识别为java，现在是不将对应代码提交到识别库中
+#*.html linguist-vendored
+#*.css linguist-vendored
+#*.js linguist-vendored
 
-
-
+# 记录生成的文档，不对进行代码统计
+*.html linguist-generated=true
+*.css linguist-generated=true
+*.js linguist-generated=true
