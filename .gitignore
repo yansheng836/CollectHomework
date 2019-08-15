@@ -1,4 +1,4 @@
-# Compiled class file
+﻿# Compiled class file
 *.class
 
 # Log file
@@ -22,9 +22,12 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+# 忽略.pmd
+.pmd
+
 # 忽略本地测试数据
-CollectHomework/16计算机科学与技术3学生名单.xls
-CollectHomework/16计算机科学与技术3学生名单--未交作业的学生名单.xls
+16计算机科学与技术3学生名单.xls
+16计算机科学与技术3学生名单--未交作业的学生名单.xls
 
 #暂时忽略该生成的文件
-CollectHomework/测试用班级点名册--未交作业的学生名单.xls
+测试用班级点名册--未交作业的学生名单.xls
