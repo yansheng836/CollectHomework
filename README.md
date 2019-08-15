@@ -1,4 +1,16 @@
+Table of Contents
+=================
 
+* [CollectHomework](#collecthomework)
+  * [出发点](#%E5%87%BA%E5%8F%91%E7%82%B9)
+  * [实现功能](#%E5%AE%9E%E7%8E%B0%E5%8A%9F%E8%83%BD)
+  * [主要类图](#%E4%B8%BB%E8%A6%81%E7%B1%BB%E5%9B%BE)
+  * [局限性](#%E5%B1%80%E9%99%90%E6%80%A7)
+  * [运行环境要求](#%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82)
+  * [如何使用](#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8)
+  * [注意事项](#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9)
+
+---
 
 # CollectHomework
 
@@ -17,7 +29,7 @@
 
 ## 主要类图
 
-![主要类图](./CollectHomework/CollectHomework.cld.jpg)
+![主要类图](./CollectHomework.cld.jpg)
 
 
 
