@@ -32,7 +32,7 @@ import com.ys.util.FindStudentUtil;
 public class ComponentInWindow extends JFrame {
 
 	/**  
-	 * @Fields serialVersionUID : 
+	 * @Fields serialVersionUID : 1L
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -108,7 +108,7 @@ public class ComponentInWindow extends JFrame {
 	}
 
 	public ComponentInWindow() {
-		InitGlobalFont(new Font("宋体", Font.BOLD, 25));  // 统一设置字体
+		InitGlobalFont(new Font("宋体", Font.BOLD, 25)); // 统一设置字体
 		init();
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -120,7 +120,7 @@ public class ComponentInWindow extends JFrame {
 	 * @version v1.0
 	 * @date 2019-07-02 00:50:30
 	 * @Description 统一设置字体，父界面设置之后，所有由父界面进入的子界面都不需要再次设置字体
-	 * @param font   
+	 * @param font  字体
 	 * void 
 	 */
 	private static void InitGlobalFont(Font font) {
@@ -300,10 +300,17 @@ public class ComponentInWindow extends JFrame {
 		}
 		// System.out.println("--表格路径为:" + excelPath + "\n");
 		jTextArea.setText("--表格路径为:" + excelPath + "\n");
+
 		students = ExcelUtil.readExcel(excelPath);
+		int studentSize = students.size();
+		// 显示班级人数
+		jtfCurrentStuNo.setText(String.valueOf(studentSize));
+
+		jTextArea.append("--扫描到的学生人数为:" + studentSize + "，学生信息如下：\n");
+		System.out.println("--扫描Excel得到的学生人数为:" + studentSize + "，学生信息如下：");
 		for (Student student : students) {
-			System.out.println("student:" + student);
-			jTextArea.append(student + System.getProperty("line.separator"));
+//			System.out.println(student.toString());
+			jTextArea.append("  " + student.toString() + System.getProperty("line.separator"));
 		}
 	}
 
@@ -316,13 +323,17 @@ public class ComponentInWindow extends JFrame {
 		}
 		// System.out.println("--文件夹路径为:" + dirPath + "\n");
 		jTextArea.setText("--文件夹路径为:" + dirPath + "\n");
+
 		fileList = FileUtil.readDir(dirPath);
 		int fileSize = fileList.size();
+		// 显示文件数量
 		jtfFileNo.setText(String.valueOf(fileSize));
-		System.out.println("数量为:" + fileSize);
+
+		jTextArea.append("--扫描文件夹得到的文件数量为:" + fileSize  + "，文件名如下：\n");
+		System.out.println("--扫描文件夹得到的文件数量为:" + fileSize + "，文件名如下：");
 		for (String string : fileList) {
-			System.out.println("string:" + string);
-			jTextArea.append(string + System.getProperty("line.separator"));
+//			System.out.println("string:" + string);
+			jTextArea.append("  " + string + System.getProperty("line.separator"));
 		}
 
 	}
@@ -339,21 +350,19 @@ public class ComponentInWindow extends JFrame {
 		// System.out.println("classNum:" + classNum+",fileNum:" + fileNum);
 
 		// 3.取得返回的列表结果
-		ArrayList<ArrayList<Student>> arrayStuList = FindStudentUtil.findStu(students, fileList, sign);
-		ArrayList<Student> studentFindList = arrayStuList.get(0);
-		noFoundStuList = arrayStuList.get(1);
+		ArrayList<Student> studentFindList = FindStudentUtil.findStu(students, fileList, sign);
+
+		noFoundStuList = FindStudentUtil.removeList(students, studentFindList);
 
 		// jlClassNo，jtfClassNo，jlStuNo，jtfStuNo，jlNoStuNo，jtfNoStuNo，jlFileNo，jtfFileNo
 		int stuNum = studentFindList.size();
 		int noStuNum = noFoundStuList.size();
 
 		// 显示数量信息
-		jtfClassNo.setText(String.valueOf(classNum));
 		jtfFindStuNo.setText(String.valueOf(stuNum));
 		jtfNoFindStuNo.setText(String.valueOf(noStuNum));
 		jtfFileNo.setText(String.valueOf(fileNum));
 
-		System.out.println("在TestFindStudentUtil中遍历:");
 		System.out.println("--1.已找到学生有 " + stuNum + " 名，学生列表为：");
 		for (Student student : studentFindList) {
 			System.out.println(student);

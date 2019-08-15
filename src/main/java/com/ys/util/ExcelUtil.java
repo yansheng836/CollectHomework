@@ -49,8 +49,8 @@ public class ExcelUtil {
 
 		System.out.println("----读取excel文件(" + excelPath + ")中的信息：");
 
-		// 定义ArrayList，用于存储bean（Student）的集合
-		ArrayList<Student> students = new ArrayList<Student>();
+		// 定义ArrayList，用于存储bean（Student）的集合，设置初始容量为40
+		ArrayList<Student> students = new ArrayList<Student>(40);
 
 		// 该数组主要存放一些特殊的标记，如留级、休学等，作用：点名册中的学生如果有这些标记的就不加入现有学生列表中。
 		String[] signs = { "留级", "退学", "休学" };
@@ -84,7 +84,6 @@ public class ExcelUtil {
 					String sno = cellSno.getContents().trim();
 					String sname = cellSname.getContents().trim();
 					String sign = cellSign.getContents().trim();
-					// System.out.println("sign:" + sign);
 
 					Student student = new Student(no, sno, sname);
 					// 如果第4列有特殊标记，则不添加该学生姓名到列表中,否则将该学生添加到列表中
@@ -100,13 +99,7 @@ public class ExcelUtil {
 					}
 				}
 			}
-
-			// 遍历列表
-			// System.out.println("\n班级学生列表有学生" + students.size() + "人，具体信息如下：");
-			// for (Student student : students) {
-			// System.out.println(student);
-			// }
-
+			
 			// 如果上面的语句都没有发生异常，
 			System.out.println("----读Excel成功。----\n");
 
