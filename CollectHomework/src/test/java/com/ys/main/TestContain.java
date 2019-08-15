@@ -23,11 +23,9 @@ public class TestContain {
 	 * @author yansheng
 	 * @version v1.0
 	 * @date 2019-07-03 19:05:16
-	 * @Description TODO
+	 * @Description 测试contains方法的用法
 	 * @param args   
 	 * void 
-	 * @see  
-	 * @exception
 	 */
 	public static void main(String[] args) {
 		String[] paths = {"郭晓20160310327数据库报告.doc","数据库系统原理20160310806-关锡琮.doc"};
@@ -50,6 +48,7 @@ public class TestContain {
 				}
 			}
 		}
+		
 		
 
 	}
