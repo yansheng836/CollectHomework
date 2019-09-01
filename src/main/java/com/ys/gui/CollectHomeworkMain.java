@@ -24,7 +24,7 @@ public class CollectHomeworkMain {
 		win.setExcelPath(excelPath);
 		win.setDirPath(dirPath);
 		win.setSign(sign);
-		win.setBounds(400, 200, 1100, 600);
+		win.setBounds(400, 200, 1100, 640);
 		win.setTitle("查询未交作业的学生名单");
 	}
 }
