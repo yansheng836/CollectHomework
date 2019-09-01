@@ -1,4 +1,4 @@
-﻿# Compiled class file
+# Compiled class file
 *.class
 
 # Log file
@@ -31,3 +31,16 @@ hs_err_pid*
 
 #暂时忽略该生成的文件
 测试用班级点名册--未交作业的学生名单.xls
+
+
+# Moven project  files
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
