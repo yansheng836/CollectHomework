@@ -1,6 +1,8 @@
 Table of Contents
 =================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fb667a64f8724b798789c67e9c392d38)](https://app.codacy.com/app/yansheng836/CollectHomework?utm_source=github.com&utm_medium=referral&utm_content=yansheng836/CollectHomework&utm_campaign=Badge_Grade_Dashboard)
+
 * [CollectHomework](#collecthomework)
   * [出发点](#%E5%87%BA%E5%8F%91%E7%82%B9)
   * [实现功能](#%E5%AE%9E%E7%8E%B0%E5%8A%9F%E8%83%BD)
