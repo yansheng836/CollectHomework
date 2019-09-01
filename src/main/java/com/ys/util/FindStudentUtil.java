@@ -71,7 +71,7 @@ public class FindStudentUtil {
 					student = students.get(j);
 					sname = student.getSname();
 					if (path.contains(sname)) {
-						if (foundStuSet.add(student) == false) {
+						if (!foundStuSet.add(student)) {
 							System.err.println("存在重复数据，学生信息为：" + student.toString());
 						}
 					}

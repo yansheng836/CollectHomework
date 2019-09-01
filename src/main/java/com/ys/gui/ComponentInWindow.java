@@ -43,136 +43,136 @@ public class ComponentInWindow extends JFrame {
 	/**  
 	 * @Fields jlExcelPath : Excel表格路径（标签）
 	 */
-	JLabel jlExcelPath;
+	private JLabel jlExcelPath;
 	/**  
 	 * @Fields jtfExcelPath : Excel表格路径（文本框）
 	 */
-	JTextField jtfExcelPath;
+	private JTextField jtfExcelPath;
 
 	/**  
 	 * @Fields jlDirPath : 文件夹路径（标签）
 	 */
-	JLabel jlDirPath;
+	private JLabel jlDirPath;
 
 	/**  
 	 * @Fields jtfDirPath : 文件夹路径（文本框）
 	 */
-	JTextField jtfDirPath;
+	private JTextField jtfDirPath;
 
 	/**  
 	 * @Fields jlClassNo : 原班级总人数（标签）
 	 */
-	JLabel jlClassNo;
+	private JLabel jlClassNo;
 
 	/**  
 	 * @Fields jtfClassNo : 原班级总人数（文本框）
 	 */
-	JTextField jtfClassNo;
+	private JTextField jtfClassNo;
 
 	/**  
 	 * @Fields jlSpecialStuNo : 有特殊情况的学生人数（标签）
 	 */
-	JLabel jlSpecialStuNo;
+	private JLabel jlSpecialStuNo;
 
 	/**  
 	 * @Fields jtfSpecialStuNo : 有特殊情况的学生人数（文本框）
 	 */
-	JTextField jtfSpecialStuNo;
+	private JTextField jtfSpecialStuNo;
 
 	/**  
 	 * @Fields jlCurrentStuNo : 当前学生人数（原班级总人数-有特殊情况的学生人数）（标签）
 	 */
-	JLabel jlCurrentStuNo;
+	private JLabel jlCurrentStuNo;
 
 	/**  
 	 * @Fields jtfCurrentStuNo : 当前学生人数（原班级总人数-有特殊情况的学生人数）（文本框）
 	 */
-	JTextField jtfCurrentStuNo;
+	private JTextField jtfCurrentStuNo;
 
 	/**  
 	 * @Fields jlFileNo : 文件数量（标签）
 	 */
-	JLabel jlFileNo;
+	private JLabel jlFileNo;
 
 	/**  
 	 * @Fields jtfFileNo : 文件数量（文本框）
 	 */
-	JTextField jtfFileNo;
+	private JTextField jtfFileNo;
 
 	/**  
 	 * @Fields jlFindStuNo : 已找到的学生人数（标签）
 	 */
-	JLabel jlFindStuNo;
+	private JLabel jlFindStuNo;
 
 	/**  
 	 * @Fields jtfFindStuNo : 已找到的学生人数（文本框）
 	 */
-	JTextField jtfFindStuNo;
+	private JTextField jtfFindStuNo;
 
 	/**  
 	 * @Fields jlNoFindStuNo : 未找到的学生人数（当前学生人数-已找到的学生人数）（标签）
 	 */
-	JLabel jlNoFindStuNo;
+	private JLabel jlNoFindStuNo;
 
 	/**  
 	 * @Fields jtfNoFindStuNo : 未找到的学生人数（当前学生人数-已找到的学生人数）（文本框）
 	 */
-	JTextField jtfNoFindStuNo;
+	private JTextField jtfNoFindStuNo;
 
 	// 按钮：触发事件
 	/**  
 	 * @Fields btReadExcel : 读Excel的按钮
 	 */
-	JButton btReadExcel;
+	private JButton btReadExcel;
 	/**  
 	 * @Fields btReadDir : 读文件夹的按钮
 	 */
-	JButton btReadDir;
+	private JButton btReadDir;
 	/**  
 	 * @Fields btFindBySno : 按学号查找学生的按钮
 	 */
-	JButton btFindBySno;
+	private JButton btFindBySno;
 	/**  
 	 * @Fields btFindBySname : 按姓名查找学生的按钮
 	 */
-	JButton btFindBySname;
+	private JButton btFindBySname;
 	/**  
 	 * @Fields btSaveNoStuToExcel : 保存未找到的学生的按钮
 	 */
-	JButton btSaveNoStuToExcel;
+	private JButton btSaveNoStuToExcel;
 
 	/**  
 	 * @Fields jTextArea : 显示多行文本的文本域：显示事件监听的相关信息
 	 */
-	JTextArea jTextArea;
+	private JTextArea jTextArea;
 
 	// 以下是相关参数声明（非组件）
 	// 定义三个变量，方便从主类传数据进来
 	/**  
 	 * @Fields excelPath : Excel表格路径
 	 */
-	String excelPath;
+	private String excelPath;
 	/**  
 	 * @Fields dirPath : 文件夹路径
 	 */
-	String dirPath;
+	private String dirPath;
 	/**  
 	 * @Fields sign : 按学号查找还是按姓名查找的标志，可选值为sno/sname.
 	 */
-	String sign;
+	private String sign;
 
 	/**  
 	 * @Fields students : 现有班级学生列表
 	 */
-	ArrayList<Student> students;
+	private ArrayList<Student> students;
 	/**  
 	 * @Fields fileList : 找到的学生列表
 	 */
-	ArrayList<String> fileList;
+	private ArrayList<String> fileList;
 	/**  
 	 * @Fields noFoundStuList : 没有找到的学生列表
 	 */
-	ArrayList<Student> noFoundStuList;
+	private ArrayList<Student> noFoundStuList;
 
 	public String getExcelPath() {
 		return excelPath;
@@ -200,7 +200,7 @@ public class ComponentInWindow extends JFrame {
 
 	public ComponentInWindow() {
 		// 统一设置字体
-		initGlobalFont(new Font("宋体", Font.BOLD, 25)); 
+		initGlobalFont(new Font("宋体", Font.BOLD, 25));
 		init();
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -226,7 +226,7 @@ public class ComponentInWindow extends JFrame {
 		}
 	}
 
-	void init() {
+	private void init() {
 
 		// 在流行布局中每个组件都居中显示
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
@@ -385,7 +385,7 @@ public class ComponentInWindow extends JFrame {
 	}
 
 	public void readExcel() {
-		if ("".equals(jtfExcelPath.getText()) != true) {
+		if (!"".equals(jtfExcelPath.getText())) {
 			excelPath = jtfExcelPath.getText();
 		} else {
 			jtfExcelPath.setText(excelPath);
@@ -407,7 +407,7 @@ public class ComponentInWindow extends JFrame {
 
 	public void readDir() {
 
-		if ("".equals(jtfDirPath.getText()) != true) {
+		if (!"".equals(jtfDirPath.getText())) {
 			dirPath = jtfDirPath.getText();
 		} else {
 			jtfDirPath.setText(dirPath);
