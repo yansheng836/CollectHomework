@@ -390,7 +390,6 @@ public class ComponentInWindow extends JFrame {
 		} else {
 			jtfExcelPath.setText(excelPath);
 		}
-		// System.out.println("--表格路径为:" + excelPath + "\n");
 		jTextArea.setText("--表格路径为:" + excelPath + "\n");
 
 		students = ExcelUtil.readExcel(excelPath);

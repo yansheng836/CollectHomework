@@ -55,10 +55,6 @@ public class ExcelUtil {
 		// 该数组主要存放一些特殊的标记，如留级、休学等，作用：点名册中的学生如果有这些标记的就不加入现有学生列表中。
 		String[] signs = { "留级", "退学", "休学" };
 		int signsLength = signs.length;
-		// 遍历-测试
-		// for (String sign : signs) {
-		// System.out.println(sign);
-		// }
 
 		// 1. 新建（打开）一个工作簿对象
 		Workbook workbook = null;
@@ -67,7 +63,6 @@ public class ExcelUtil {
 			// 2. 获得第一个工作表对象
 			Sheet sheet = workbook.getSheet(0);
 			int rows = sheet.getRows();
-			// System.out.println(rows);
 
 			// 假设第一行是标题，第二行是表头，从第三行开始读数据（下标从0开始）
 			for (int i = 2; i < rows; i++) {
@@ -99,7 +94,7 @@ public class ExcelUtil {
 					}
 				}
 			}
-			
+
 			// 如果上面的语句都没有发生异常，
 			System.out.println("----读Excel成功。----\n");
 
@@ -118,15 +113,7 @@ public class ExcelUtil {
 			System.out.println("IndexOutOfBoundsException：读取的工作表数量、单元格的行数或者越界。");
 			e.printStackTrace();
 		} finally {
-			// 如果资源没有gc被回收，手动关闭资源。
-			if (workbook != null) {
-				try {
-					workbook.close();
-				} catch (Exception e) {
-					System.out.println("Exception：关闭workbook时发生异常。");
-					e.printStackTrace();
-				}
-			}
+			closeWorkbook(workbook);
 		}
 		return students;
 	}
@@ -203,17 +190,47 @@ public class ExcelUtil {
 			System.out.println("WriteException:添加单元格到工作表时，可能发生的异常。");
 			e1.printStackTrace();
 		} finally {
-			// 如果资源没有gc被回收，手动关闭资源。
-			if (workbook != null) {
-				try {
-					workbook.close();
-				} catch (Exception e) {
-					System.out.println("Exception：关闭workbook时发生异常。");
-					e.printStackTrace();
-				}
-			}
+			closeWorkbook(workbook);
 		}
 
+	}
+
+	/**
+	 * @Title closeWorkbook
+	 * @author yansheng
+	 * @version v1.0
+	 * @date 2019-09-01 09:36:06
+	 * @Description 关闭WritableWorkbook对象
+	 * @param workbook   
+	 */
+	public static <T extends WritableWorkbook> void closeWorkbook(T workbook) {
+		if (workbook != null) {
+			try {
+				workbook.close();
+			} catch (Exception e) {
+				System.out.println("Exception：写表格后，关闭workbook时发生异常。");
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * @Title closeWorkbook
+	 * @author yansheng
+	 * @version v1.0
+	 * @date 2019-09-01 09:35:43
+	 * @Description 关闭Workbook对象
+	 * @param workbook   
+	 */
+	public static <T extends Workbook> void closeWorkbook(T workbook) {
+		if (workbook != null) {
+			try {
+				workbook.close();
+			} catch (Exception e) {
+				System.out.println("Exception：读表格后，关闭workbook时发生异常。");
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -228,11 +245,8 @@ public class ExcelUtil {
 	 */
 	public static String getSaveExcelFileName(String excelPath) {
 		// 提取不含扩展名的文件名
-		// System.out.println("excelPath:"+excelPath);
 		String perfix = excelPath.substring(0, excelPath.lastIndexOf("."));
 		String excelPath1 = perfix + "--未交作业的学生名单.xls";
-		// System.out.println("perfix:" + perfix);
-		// System.out.println("excelPath1:" + excelPath1);
 
 		return excelPath1;
 	}

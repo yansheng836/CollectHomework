@@ -43,14 +43,11 @@ public class ReadExcelExample {
 			workbook = Workbook.getWorkbook(new File(excelPath));
 
 			Sheet sheet = workbook.getSheet(0);
-//			System.out.println(sheet);
 
 			Cell cell = sheet.getCell(7, 5);
 			System.out.println("第一个单元格的内容是："+cell.getContents());
 
-			// 如果上面的语句都没有发生异常，
 			System.out.println("----读Excel成功。----\n");
-
 		} catch (NullPointerException e) {
 			System.out.println("NullPointerException:File路径名为空。");
 			e.printStackTrace();
@@ -66,15 +63,7 @@ public class ReadExcelExample {
 			System.out.println("IndexOutOfBoundsException：读取的工作表数量、单元格的行数或者越界。");
 			e.printStackTrace();
 		} finally {
-			// 如果资源没有gc被回收，手动关闭资源。
-			if (workbook != null) {
-				try {
-					workbook.close();
-				} catch (Exception e) {
-					System.out.println("Exception：关闭workbook时发生异常。");
-					e.printStackTrace();
-				}
-			}
+			ExcelUtil.closeWorkbook(workbook);
 		}
 	}
 

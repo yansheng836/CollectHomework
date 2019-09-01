@@ -58,7 +58,6 @@ public class FindStudentUtil {
 					student = students.get(j);
 					sno = student.getSno();
 					if (path.contains(sno)) {
-//						System.out.println("匹配成功，学生信息为：" + student.toString());
 						if (foundStuSet.add(student) == false) {
 							System.err.println("存在重复数据，学生信息为：" + student.toString());
 						}
@@ -72,7 +71,6 @@ public class FindStudentUtil {
 					student = students.get(j);
 					sname = student.getSname();
 					if (path.contains(sname)) {
-//						System.out.println("匹配成功，学生信息为：" + student.toString());
 						if (foundStuSet.add(student) == false) {
 							System.err.println("存在重复数据，学生信息为：" + student.toString());
 						}
@@ -127,8 +125,6 @@ public class FindStudentUtil {
 
 		Integer classNum = students.size();
 		Integer fileNum = fileList.size();
-		// System.out.println("stuLen:"+stuLen);
-		// System.out.println("fileLen:"+fileLen);
 
 		String string = null;
 		if (classNum.equals(fileNum)) {

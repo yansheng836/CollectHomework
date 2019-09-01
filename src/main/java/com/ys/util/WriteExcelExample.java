@@ -65,15 +65,7 @@ public class WriteExcelExample {
 			System.out.println("WriteException:添加单元格到工作表时，可能发生的异常。");
 			e1.printStackTrace();
 		} finally {
-			// 如果资源没有gc被回收，手动关闭资源。
-			if (workbook != null) {
-				try {
-					workbook.close();
-				} catch (Exception e) {
-					System.out.println("Exception：关闭workbook时发生异常。");
-					e.printStackTrace();
-				}
-			}
+			ExcelUtil.closeWorkbook(workbook);
 		}
 
 	}

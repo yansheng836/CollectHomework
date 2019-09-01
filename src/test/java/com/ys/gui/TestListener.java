@@ -96,9 +96,6 @@ class JFram extends JFrame {
 
 		container.add(button);
 
-		// String string = winListener.getJtfFileNo().toString();
-		// System.out.println("win中的string:"+string);
-
 		button.addActionListener(new ActionListener() {
 
 			@Override
