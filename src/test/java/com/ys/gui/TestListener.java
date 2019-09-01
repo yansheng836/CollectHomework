@@ -123,7 +123,7 @@ class JFram extends JFrame {
 				if (returnString != null) {
 					System.out.println("returnString非空");
 				}
-				if (returnString.equals("")) {
+				if ("".equals(returnString)) {
 					System.out.println("returnString为空字符串");
 				}
 			}

@@ -40,47 +40,138 @@ public class ComponentInWindow extends JFrame {
 
 	// 文本显示（标签）对象
 	// 显示读取文件的信息
+	/**  
+	 * @Fields jlExcelPath : Excel表格路径（标签）
+	 */
 	JLabel jlExcelPath;
-	JLabel jlDirPath;
-	// 显示数量信息
-	JLabel jlClassNo;
-	JLabel jlSpecialStuNo;
-	JLabel jlCurrentStuNo;
-	JLabel jlFileNo;
-	JLabel jlFindStuNo;
-	JLabel jlNoFindStuNo;
-
-	// 显示单行文本的文本框
+	/**  
+	 * @Fields jtfExcelPath : Excel表格路径（文本框）
+	 */
 	JTextField jtfExcelPath;
+
+	/**  
+	 * @Fields jlDirPath : 文件夹路径（标签）
+	 */
+	JLabel jlDirPath;
+
+	/**  
+	 * @Fields jtfDirPath : 文件夹路径（文本框）
+	 */
 	JTextField jtfDirPath;
 
+	/**  
+	 * @Fields jlClassNo : 原班级总人数（标签）
+	 */
+	JLabel jlClassNo;
+
+	/**  
+	 * @Fields jtfClassNo : 原班级总人数（文本框）
+	 */
 	JTextField jtfClassNo;
+
+	/**  
+	 * @Fields jlSpecialStuNo : 有特殊情况的学生人数（标签）
+	 */
+	JLabel jlSpecialStuNo;
+
+	/**  
+	 * @Fields jtfSpecialStuNo : 有特殊情况的学生人数（文本框）
+	 */
 	JTextField jtfSpecialStuNo;
+
+	/**  
+	 * @Fields jlCurrentStuNo : 当前学生人数（原班级总人数-有特殊情况的学生人数）（标签）
+	 */
+	JLabel jlCurrentStuNo;
+
+	/**  
+	 * @Fields jtfCurrentStuNo : 当前学生人数（原班级总人数-有特殊情况的学生人数）（文本框）
+	 */
 	JTextField jtfCurrentStuNo;
+
+	/**  
+	 * @Fields jlFileNo : 文件数量（标签）
+	 */
+	JLabel jlFileNo;
+
+	/**  
+	 * @Fields jtfFileNo : 文件数量（文本框）
+	 */
 	JTextField jtfFileNo;
+
+	/**  
+	 * @Fields jlFindStuNo : 已找到的学生人数（标签）
+	 */
+	JLabel jlFindStuNo;
+
+	/**  
+	 * @Fields jtfFindStuNo : 已找到的学生人数（文本框）
+	 */
 	JTextField jtfFindStuNo;
+
+	/**  
+	 * @Fields jlNoFindStuNo : 未找到的学生人数（当前学生人数-已找到的学生人数）（标签）
+	 */
+	JLabel jlNoFindStuNo;
+
+	/**  
+	 * @Fields jtfNoFindStuNo : 未找到的学生人数（当前学生人数-已找到的学生人数）（文本框）
+	 */
 	JTextField jtfNoFindStuNo;
 
 	// 按钮：触发事件
+	/**  
+	 * @Fields btReadExcel : 读Excel的按钮
+	 */
 	JButton btReadExcel;
+	/**  
+	 * @Fields btReadDir : 读文件夹的按钮
+	 */
 	JButton btReadDir;
+	/**  
+	 * @Fields btFindBySno : 按学号查找学生的按钮
+	 */
 	JButton btFindBySno;
+	/**  
+	 * @Fields btFindBySname : 按姓名查找学生的按钮
+	 */
 	JButton btFindBySname;
+	/**  
+	 * @Fields btSaveNoStuToExcel : 保存未找到的学生的按钮
+	 */
 	JButton btSaveNoStuToExcel;
 
-	// 显示多行文本的文本域：显示事件监听的相关信息
+	/**  
+	 * @Fields jTextArea : 显示多行文本的文本域：显示事件监听的相关信息
+	 */
 	JTextArea jTextArea;
 
 	// 以下是相关参数声明（非组件）
-
-	// 定义两个变量，方便从主类传数据进来
+	// 定义三个变量，方便从主类传数据进来
+	/**  
+	 * @Fields excelPath : Excel表格路径
+	 */
 	String excelPath;
+	/**  
+	 * @Fields dirPath : 文件夹路径
+	 */
 	String dirPath;
+	/**  
+	 * @Fields sign : 按学号查找还是按姓名查找的标志，可选值为sno/sname.
+	 */
 	String sign;
 
+	/**  
+	 * @Fields students : 现有班级学生列表
+	 */
 	ArrayList<Student> students;
+	/**  
+	 * @Fields fileList : 找到的学生列表
+	 */
 	ArrayList<String> fileList;
-	// 没有找到的学生列表
+	/**  
+	 * @Fields noFoundStuList : 没有找到的学生列表
+	 */
 	ArrayList<Student> noFoundStuList;
 
 	public String getExcelPath() {
@@ -108,14 +199,15 @@ public class ComponentInWindow extends JFrame {
 	}
 
 	public ComponentInWindow() {
-		InitGlobalFont(new Font("宋体", Font.BOLD, 25)); // 统一设置字体
+		// 统一设置字体
+		initGlobalFont(new Font("宋体", Font.BOLD, 25)); 
 		init();
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	/**
-	 * @Title InitGlobalFont
+	 * @Title initGlobalFont
 	 * @author yansheng
 	 * @version v1.0
 	 * @date 2019-07-02 00:50:30
@@ -123,7 +215,7 @@ public class ComponentInWindow extends JFrame {
 	 * @param font  字体
 	 * void 
 	 */
-	private static void InitGlobalFont(Font font) {
+	private static void initGlobalFont(Font font) {
 		FontUIResource fontRes = new FontUIResource(font);
 		for (Enumeration<Object> keys = UIManager.getDefaults().keys(); keys.hasMoreElements();) {
 			Object key = keys.nextElement();
@@ -309,7 +401,7 @@ public class ComponentInWindow extends JFrame {
 		jTextArea.append("--扫描到的学生人数为:" + studentSize + "，学生信息如下：\n");
 		System.out.println("--扫描Excel得到的学生人数为:" + studentSize + "，学生信息如下：");
 		for (Student student : students) {
-//			System.out.println(student.toString());
+			System.out.println(student.toString());
 			jTextArea.append("  " + student.toString() + System.getProperty("line.separator"));
 		}
 	}
@@ -321,7 +413,7 @@ public class ComponentInWindow extends JFrame {
 		} else {
 			jtfDirPath.setText(dirPath);
 		}
-		// System.out.println("--文件夹路径为:" + dirPath + "\n");
+		System.out.println("--文件夹路径为:" + dirPath + "\n");
 		jTextArea.setText("--文件夹路径为:" + dirPath + "\n");
 
 		fileList = FileUtil.readDir(dirPath);
@@ -329,10 +421,9 @@ public class ComponentInWindow extends JFrame {
 		// 显示文件数量
 		jtfFileNo.setText(String.valueOf(fileSize));
 
-		jTextArea.append("--扫描文件夹得到的文件数量为:" + fileSize  + "，文件名如下：\n");
+		jTextArea.append("--扫描文件夹得到的文件数量为:" + fileSize + "，文件名如下：\n");
 		System.out.println("--扫描文件夹得到的文件数量为:" + fileSize + "，文件名如下：");
 		for (String string : fileList) {
-//			System.out.println("string:" + string);
 			jTextArea.append("  " + string + System.getProperty("line.separator"));
 		}
 
@@ -347,7 +438,6 @@ public class ComponentInWindow extends JFrame {
 		int fileNum = Integer.parseInt(compareResults[2]);
 
 		System.out.println("result:" + result);
-		// System.out.println("classNum:" + classNum+",fileNum:" + fileNum);
 
 		// 3.取得返回的列表结果
 		ArrayList<Student> studentFindList = FindStudentUtil.findStu(students, fileList, sign);

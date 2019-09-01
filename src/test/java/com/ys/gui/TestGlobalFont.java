@@ -10,6 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Company: </p>
+ * @author yansheng
+ * @date 2019-09-01 08:50:49
+ * @version v1.0 
+ */
 public class TestGlobalFont {
 
 	public static void main(String[] args) {
@@ -32,7 +40,8 @@ public class TestGlobalFont {
 	 * void 
 	 */
 	public static void init(JFrame jFrame) {
-		InitGlobalFont(new Font("宋体", Font.PLAIN, 40)); // 统一设置字体
+		// 统一设置字体
+		initGlobalFont(new Font("宋体", Font.PLAIN, 40)); 
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
 		jFrame.setLayout(flowLayout);
 		
@@ -56,7 +65,7 @@ public class TestGlobalFont {
 	/**
 	* 统一设置字体，父界面设置之后，所有由父界面进入的子界面都不需要再次设置字体
 	*/
-	private static void InitGlobalFont(Font font) {
+	private static void initGlobalFont(Font font) {
 		FontUIResource fontRes = new FontUIResource(font);
 		// 打印字体信息
 		System.out.println("fontRes:" + fontRes);
@@ -78,7 +87,7 @@ public class TestGlobalFont {
 	/**精简版，无注释的
 	* 统一设置字体，父界面设置之后，所有由父界面进入的子界面都不需要再次设置字体
 	*/
-	private static void InitGlobalFont1(Font font) {
+	private static void initGlobalFont1(Font font) {
 		FontUIResource fontRes = new FontUIResource(font);
 		for (Enumeration<Object> keys = UIManager.getDefaults().keys(); keys.hasMoreElements();) {
 			Object key = keys.nextElement();
