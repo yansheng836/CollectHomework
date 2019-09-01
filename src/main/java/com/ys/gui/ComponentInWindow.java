@@ -246,7 +246,7 @@ public class ComponentInWindow extends JFrame {
 		btFindBySname = new JButton("按姓名进行查找文件");
 		btSaveNoStuToExcel = new JButton("<br>将未交作业的学生名单保存到excel文件中");
 
-		JButton button = new JButton("换行按钮");
+		JButton cleanJButton = new JButton("清空显示");
 
 		/*
 		 * 显示班级总人数，已交作业的学生人数，未交作业的人数，文件夹下文件总数
@@ -285,7 +285,7 @@ public class ComponentInWindow extends JFrame {
 		this.add(btReadDir);
 		this.add(btFindBySno);
 		this.add(btFindBySname);
-		this.add(button);
+		this.add(cleanJButton);
 
 		// 添加显示数量信息的组件
 		this.add(jlClassNo);
@@ -353,9 +353,17 @@ public class ComponentInWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				jTextArea.setText("--按姓名进行查找文件");
-				sign = "sname";
-				btFindBySnoFunction(excelPath, dirPath, sign);
+
+				// 路径不为空才进行查找，否则返回错误信息
+				boolean bool = judgePathIsNoNull();
+				if (bool) {
+					jTextArea.setText("--按姓名进行查找文件\n");
+					sign = "sname";
+					btFindBySnoFunction(excelPath, dirPath, sign);
+				} else {
+					jTextArea.setText("--查找失败，Excel或文件夹路径为空！！\n");
+				}
+
 			}
 		});
 
@@ -363,9 +371,15 @@ public class ComponentInWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				jTextArea.setText("--按学号进行查找文件");
-				sign = "sno";
-				btFindBySnoFunction(excelPath, dirPath, sign);
+				// 路径不为空才进行查找，否则返回错误信息
+				boolean bool = judgePathIsNoNull();
+				if (bool) {
+					jTextArea.setText("--按学号进行查找文件\n");
+					sign = "sno";
+					btFindBySnoFunction(excelPath, dirPath, sign);
+				} else {
+					jTextArea.setText("--查找失败，Excel或文件夹路径为空！！\n");
+				}
 			}
 		});
 
@@ -373,12 +387,26 @@ public class ComponentInWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ExcelUtil.writeExcel(excelPath, noFoundStuList);
+				// 路径不为空保存数据，否则返回错误信息
+				boolean bool = judgePathIsNoNull();
+				if (bool) {
+					ExcelUtil.writeExcel(excelPath, noFoundStuList);
+					// 显示保存信息
+					String saveExcelPath = ExcelUtil.getSaveExcelFileName(excelPath);
+					jTextArea.setText("----写数据到(" + saveExcelPath + ")成功。----\n");
+				} else {
+					jTextArea.setText("--保存数据失败，Excel或文件夹路径为空！！\n");
+				}
 
-				// 显示保存信息
-				String saveExcelPath = ExcelUtil.getSaveExcelFileName(excelPath);
-				jTextArea.setText("----写数据到(" + saveExcelPath + ")成功。----\n");
+			}
+		});
 
+		cleanJButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				jTextArea.setText("");
 			}
 		});
 
@@ -392,9 +420,16 @@ public class ComponentInWindow extends JFrame {
 		}
 		jTextArea.setText("--表格路径为:" + excelPath + "\n");
 
-		students = ExcelUtil.readExcel(excelPath);
+		ArrayList<Student>[] studentsArray = ExcelUtil.readExcel(excelPath);
+
+		students = studentsArray[0];
+		ArrayList<Student> specialStudents = studentsArray[1];
+
 		int studentSize = students.size();
+		int specialStuNo = specialStudents.size();
 		// 显示班级人数
+		jtfClassNo.setText(String.valueOf(studentSize + specialStuNo));
+		jtfSpecialStuNo.setText(String.valueOf(specialStuNo));
 		jtfCurrentStuNo.setText(String.valueOf(studentSize));
 
 		jTextArea.append("--扫描到的学生人数为:" + studentSize + "，学生信息如下：\n");
@@ -462,8 +497,8 @@ public class ComponentInWindow extends JFrame {
 			System.out.println(student);
 		}
 
-		// jTextArea.setText("");
 		jTextArea.append(result + "\n");
+
 		jTextArea.append("--1.已找到学生有 " + stuNum + " 名，学生列表为：\n");
 		for (Student student : studentFindList) {
 			// 获取原内容，增加换行符，再拼接list当前值
@@ -477,5 +512,18 @@ public class ComponentInWindow extends JFrame {
 			jTextArea.append(student.toString() + System.getProperty("line.separator"));
 		}
 
+	}
+
+	public boolean judgePathIsNoNull() {
+		boolean bool = true;
+
+		// 如果（excel或者文件夹）路径为空，返回false
+		boolean result = ("".equals(jtfExcelPath.getText().trim()))
+				|| ("".equals(jtfDirPath.getText().trim()));
+		if (result) {
+			bool = false;
+		}
+
+		return bool;
 	}
 }

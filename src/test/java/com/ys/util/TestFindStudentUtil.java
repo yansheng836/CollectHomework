@@ -32,7 +32,9 @@ public class TestFindStudentUtil {
 	 */
 	public static void main(String[] args) {
 		String excelPath = "16计算机科学与技术3学生名单.xls";
-		ArrayList<Student> students = ExcelUtil.readExcel(excelPath);
+		ArrayList<Student>[] studentsArray = ExcelUtil.readExcel(excelPath);
+
+		ArrayList<Student> students = studentsArray[0];
 //		 遍历进行验证
 		System.out.println("在TestFindStudentUtil中遍历：");
 		for (Student student : students) {

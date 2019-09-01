@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.ys.bean.Student;
 
@@ -31,12 +32,12 @@ public class ExcelUtil {
 	/**
 	 * @Title readExcel
 	 * @author yansheng
-	 * @version v2.0
+	 * @version v3.0
 	 * @date 2019-06-22 14:51:00
 	 * @Description 读取excel文件中的数据，保存到ArrayList中
 	 * @param excelPath	需要读取的excel文件路径
 	 * @return   
-	 * ArrayList<Student> 返回学生集
+	 * ArrayList<Student>[] 返回学生集数组
 	 * @see  Student 学生类详见Student
 	 * @exception NullPointerException	传入参数为空时，抛出异常。
 	 * @exception FileNotFoundException 系统中没有找到该文件时，抛出异常。
@@ -45,12 +46,13 @@ public class ExcelUtil {
 	 * @exception IndexOutOfBoundsException 读取的工作表数量、单元格的行数或者越界。
 	 * @exception Exception 关闭文件失败时抛出异常
 	 */
-	public static ArrayList<Student> readExcel(String excelPath) {
+	public static ArrayList<Student>[] readExcel(String excelPath) {
 
 		System.out.println("----读取excel文件(" + excelPath + ")中的信息：");
 
 		// 定义ArrayList，用于存储bean（Student）的集合，设置初始容量为40
 		ArrayList<Student> students = new ArrayList<Student>(40);
+		ArrayList<Student> specialStudents = new ArrayList<Student>(10);
 
 		// 该数组主要存放一些特殊的标记，如留级、休学等，作用：点名册中的学生如果有这些标记的就不加入现有学生列表中。
 		String[] signs = { "留级", "退学", "休学" };
@@ -86,6 +88,7 @@ public class ExcelUtil {
 						if (signs[j].equalsIgnoreCase(sign)) {
 							System.out.println(student + "的情况特殊，标志sign为：" + sign + ",故不加入学生列表。");
 							// 匹配到一个就跳出循环
+							specialStudents.add(student);
 							break;
 						} else if (j == signsLength - 1) {
 							// 遍历关键字列表都没有匹配到，将该学生添加到列表中
@@ -115,7 +118,12 @@ public class ExcelUtil {
 		} finally {
 			closeWorkbook(workbook);
 		}
-		return students;
+
+		ArrayList<Student>[] studentsArray = new ArrayList[2];
+		studentsArray[0] = students;
+		studentsArray[1] = specialStudents;
+
+		return studentsArray;
 	}
 
 	/**
