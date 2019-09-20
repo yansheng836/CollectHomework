@@ -1,21 +1,5 @@
-/**  
- * @Title SimpleTest.java
- * @Package com.ys.gui
- * @Description TODO
- * @author yansheng
- * @date 2019-06-23 17:45:58
- * @version v1.0
- */
 package com.ys.gui;
 
-/**
- * <p>Title: </p>
- * <p>Description: https://blog.csdn.net/iteye_19871/article/details/81766585</p>
- * <p>Company: </p>
- * @author yansheng
- * @date 2019-06-23 17:45:58
- * @version v1.0 
- */
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -29,6 +13,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+/**
+ * 参考：https://blog.csdn.net/iteye_19871/article/details/81766585
+ * 
+ * @author yansheng
+ * @date 2019/06/23
+ */
 public class SimpleTest extends JFrame {
 	private ImageIcon image;
 	private JLabel label;

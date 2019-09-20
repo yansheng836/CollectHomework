@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 /**
- * <p>Title: </p>
- * <p>Description: 测试list的使用</p>
- * <p>Company: </p>
+ * 测试list的使用
+ * 
  * @author yansheng
- * @date 2019-06-05 23:33:39
- * @version v1.0 
+ * @date 2019/06/05
  */
 public class TestList {
 
@@ -27,8 +25,6 @@ public class TestList {
 		strings.remove("1");
 		strings.removeAll(stringss);
 		
-		
-		
 		for (String string : strings) {
 			System.out.println(string);
 		}
@@ -37,10 +33,8 @@ public class TestList {
 			System.out.println(string);
 		}
 		
-		//
 		System.out.println("打印列表信息：");
 		System.out.println(strings.toString());
-		
 		
 		//尝试正则匹配
 		boolean bool = false;
@@ -50,7 +44,6 @@ public class TestList {
 		boolean bool1 = string.contains(regex);
 		System.out.println("匹配返回值为："+bool);
 		System.out.println("匹配返回值为："+bool1);
-		
 
 	}
 

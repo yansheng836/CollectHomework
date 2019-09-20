@@ -1,24 +1,12 @@
 package com.ys.bean;
 
 /**
- * <p>Title: </p>
- * <p>Description:测试Student </p>
- * <p>Company: </p>
+ * 测试Student
  * @author yansheng
- * @date 2019-06-03 23:06:01
- * @version v1.0 
+ * @date 2019/06/03
  */
 public class TestStudent {
 
-	/**
-	 * @Title main
-	 * @author yansheng
-	 * @version v1.0
-	 * @Time 2019-06-03 23:06:20
-	 * @Description 测试Student
-	 * @param args 主方法参数
-	 * @see  Student
-	 */
 	public static void main(String[] args) {
 		
 		Student student = new Student("16", "20160310339", "yansheng");

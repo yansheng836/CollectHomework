@@ -8,12 +8,10 @@ import com.ys.util.FileUtil;
 import com.ys.util.FindStudentUtil;
 
 /**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Company: </p>
+ * 直接在控制台输出结果。
+ * 
  * @author yansheng
- * @date 2019-06-19 14:07:33
- * @version v1.0 
+ * @date 2019/06/19
  */
 public class Main {
 

@@ -1,21 +1,5 @@
-/**  
- * @Title SimpleTest1.java
- * @Package com.ys.gui
- * @Description TODO
- * @author yansheng
- * @date 2019-06-23 17:49:21
- * @version v1.0
- */
 package com.ys.gui;
 
-/**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Company: </p>
- * @author yansheng
- * @date 2019-06-23 17:49:21
- * @version v1.0 
- */
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -30,6 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+/**
+ * @author yansheng
+ * @date 2019/06/23
+ */
 public class SimpleTest1 extends JFrame {
 	private ImageIcon image;
 	private JLabel label;
