@@ -91,7 +91,7 @@ Table of Contents
 
 ### 简单使用
 
-1. 下载 [最新版本的发布包](<https://github.com/yansheng836/MyOA1/releases>)。
+1. 下载 [最新版本的发布包](<https://github.com/yansheng836/CollectHomework/releases>)。
 
 2. 运行 `CollectHomework-*-SNAPSHOT.jar` 。
 
@@ -113,11 +113,11 @@ Table of Contents
 
    ```xml
    <!-- https://mvnrepository.com/artifact/net.sourceforge.jexcelapi/jxl -->
-   		<dependency>
-   			<groupId>net.sourceforge.jexcelapi</groupId>
-   			<artifactId>jxl</artifactId>
-   			<version>2.6.12</version>
-   		</dependency>
+   <dependency>
+   	<groupId>net.sourceforge.jexcelapi</groupId>
+   	<artifactId>jxl</artifactId>
+   	<version>2.6.12</version>
+   </dependency>
    ```
 
    如不使用Maven，则需要将对应jar加到类路径中。
@@ -132,4 +132,4 @@ Table of Contents
 
 ## License
 
-This work is licensed under a [MIT](https://github.com/yansheng836/CollectHomework/blob/master/LICENSE.txt).
+This work is licensed under a [MIT](https://github.com/yansheng836/CollectHomework/blob/master/LICENSE).
