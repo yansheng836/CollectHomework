@@ -1,6 +1,6 @@
 # CollectHomework
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fb667a64f8724b798789c67e9c392d38)](https://app.codacy.com/app/yansheng836/CollectHomework?utm_source=github.com&utm_medium=referral&utm_content=yansheng836/CollectHomework&utm_campaign=Badge_Grade_Dashboard)  [![Build Status](https://travis-ci.org/yansheng836/CollectHomework.svg?branch=master)](https://travis-ci.org/yansheng836/CollectHomework)  [![BCH compliance](https://bettercodehub.com/edge/badge/yansheng836/CollectHomework?branch=master)](https://bettercodehub.com/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fb667a64f8724b798789c67e9c392d38)](https://app.codacy.com/app/yansheng836/CollectHomework?utm_source=github.com&utm_medium=referral&utm_content=yansheng836/CollectHomework&utm_campaign=Badge_Grade_Dashboard)  [![Build Status](https://travis-ci.org/yansheng836/CollectHomework.svg?branch=master)](https://travis-ci.org/yansheng836/CollectHomework)  [![codecov](https://codecov.io/gh/yansheng836/CollectHomework/branch/master/graph/badge.svg)](https://codecov.io/gh/yansheng836/CollectHomework)  [![BCH compliance](https://bettercodehub.com/edge/badge/yansheng836/CollectHomework?branch=master)](https://bettercodehub.com/)  [![GitHub LICENSE ](https://img.shields.io/github/license/yansheng836/CollectHomework)](https://github.com/yansheng836/CollectHomework/blob/master/LICENSE)  [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/yansheng836/CollectHomework?include_prereleases)](https://github.com/yansheng836/CollectHomework/releases)
 
 出发点：为了方便学习委员收作业，自动清算已交作业的学生名单和未交作业的学生名单。  
 
@@ -79,7 +79,7 @@
 
 1. Windows 10  
 2. JDK1.8  
-3. Eclipse 4.0  
+3. Eclipse Oxygen.3a Release (4.7.3a)  
 4. Maven 3.6  
 
 ## 如何使用
