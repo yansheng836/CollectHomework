@@ -1,14 +1,14 @@
-CollectHomework
-================
+# CollectHomework
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fb667a64f8724b798789c67e9c392d38)](https://app.codacy.com/app/yansheng836/CollectHomework?utm_source=github.com&utm_medium=referral&utm_content=yansheng836/CollectHomework&utm_campaign=Badge_Grade_Dashboard)  [![Build Status](https://travis-ci.org/yansheng836/CollectHomework.svg?branch=master)](https://travis-ci.org/yansheng836/CollectHomework)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fb667a64f8724b798789c67e9c392d38)](https://app.codacy.com/app/yansheng836/CollectHomework?utm_source=github.com&utm_medium=referral&utm_content=yansheng836/CollectHomework&utm_campaign=Badge_Grade_Dashboard)  [![Build Status](https://travis-ci.org/yansheng836/CollectHomework.svg?branch=master)](https://travis-ci.org/yansheng836/CollectHomework)  [![BCH compliance](https://bettercodehub.com/edge/badge/yansheng836/CollectHomework?branch=master)](https://bettercodehub.com/)
 
-出发点：为了方便学习委员收作业，自动清算已交作业的学生名单和未交作业的学生名单。
+出发点：为了方便学习委员收作业，自动清算已交作业的学生名单和未交作业的学生名单。  
+
+主要内容：简单的 `jxl` 读写Excel文件。
 
 ---
 
-Table of Contents
-=================
+## Table of Contents
 
 * [实现功能](#%E5%AE%9E%E7%8E%B0%E5%8A%9F%E8%83%BD)
 * [主要类图](#%E4%B8%BB%E8%A6%81%E7%B1%BB%E5%9B%BE)
@@ -32,11 +32,9 @@ Table of Contents
 3. 按照学号或者是姓名，将1和2中的数据（即学生列表和文件列表）进行对比，可得到已交作业学生名单和未交作业的学生名单。
 4. 提供接口，实现将3中的名单写到 Excel 中。
 
-
 ## 主要类图
 
 ![主要类图](https://s2.ax1x.com/2019/09/20/nX6L3n.jpg)
-
 
 ## 局限性
 1. 因为这里读写Excel用的是jxl 工具包，该包只能读写以“.xls”为后缀的表格文件。
@@ -73,10 +71,7 @@ Table of Contents
     </tr>
 </table>
 
-
-3. 备注内容只能是：休学、留级、退学。（如有差异，可以更改`com.ys.util.ExcelUtil`类中的：
-
-   `String[] signs = { "留级", "退学", "休学" };`部分代码）
+3. 备注内容只能是：休学、留级、退学。（如有差异，可以更改`com.ys.util.ExcelUtil`类中的：`String[] signs = { "留级", "退学", "休学" };`部分代码）
 
 4. 文件夹路径下的每个学生交的作业命名有一定要求，参考：***学号+姓名+作业名***，eg:***20160310100yansheng-java作业***。
 
@@ -99,13 +94,11 @@ Table of Contents
 
 ![运行测试数据的结果图](https://s2.ax1x.com/2019/09/20/nXgpsP.jpg)
 
-
 ### 开发
 
 1. git clone <https://github.com/yansheng836/CollectHomework.git> 或者到该网址下载zip包。
 2. 将项目导入到Eclipse中。
 3. 运行src/main/java下的com.ys.gui的CollectHomeworkMain类（或者com.ys.main的Main类），默认使用项目里面的测试数据（即点名册为："./测试用班级点名册.xls"，文件夹为："./测试用文件夹--已收作业"）；如需修改可以在对应位置进行修改，也可在GUI的文本框中输入对应路径。
-
 
 ## 注意事项
 
@@ -124,11 +117,9 @@ Table of Contents
    
 2.  如果读取表格时发生错误，有可能是表格的格式有问题。
 
-
 ## 声明
 
 本项目中的测试数据纯属虚构，仅用于测试；如有雷同，不胜荣幸，但是请不要对号入座。
-
 
 ## License
 
