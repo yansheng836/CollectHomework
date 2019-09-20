@@ -31,17 +31,17 @@ public class Main {
 		String dirPath = "E:\\1学习，作业，文档\\6大三下相关文档资料及作业\\收作业\\16计科3-Linux第一次作业";
 		ArrayList<String> fileList = FileUtil.readDir(dirPath);
 
-		// 测试“比较比较班级学生人数和文件夹内的文件数目”的方法
-		String[] compareResults = FindStudentUtil.compareNumber(students, fileList);
-		String result = compareResults[0];
-		int stuNum = Integer.parseInt(compareResults[1]);
-		int fileNum = Integer.parseInt(compareResults[2]);
-
-		System.out.println();
-		System.out.println("result:" + result);
-		System.out.println("stuNum:" + stuNum);
-		System.out.println("fileNum:" + fileNum);
-		System.out.println();
+		// 先比较学生列表数量和文件夹内文件数量
+        int classNum = students.size();
+        int fileNum = fileList.size();
+        String compareResult = null;
+        if (classNum == fileNum) {
+            compareResult = "文件数量和学生列表数量一致！" + "学生列表有" + classNum + "个学生，文件列表有" + fileNum + "个文件。";
+        } else {
+            compareResult = "文件数量和学生列表数量不一致！" + "学生列表有" + classNum + "个学生，文件列表有" + fileNum + "个文件。";
+        }
+        System.out.println("compareResult:" + compareResult);
+        
 
 		// 测试“比较比较班级学生人数和文件夹内的文件数目”的方法
 		String sign = "sno";

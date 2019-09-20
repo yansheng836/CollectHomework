@@ -36,10 +36,10 @@ class JFram extends JFrame {
      * @Fields serialVersionUID : TODO
      */
     private static final long serialVersionUID = 1L;
-    JTextField jtfFileNo;
-    JLabel jlExcel;
-    JTextArea jTextArea;
-    Button button;
+    private JTextField jtfFileNo;
+    private JLabel jlExcel;
+    private JTextArea jTextArea;
+    private Button button;
 
     public JFram() {
         init();
@@ -48,7 +48,7 @@ class JFram extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    void init() {
+    public void init() {
 
         Container container = this.getContentPane();
         FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);

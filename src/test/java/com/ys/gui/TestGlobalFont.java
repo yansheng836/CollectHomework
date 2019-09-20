@@ -49,7 +49,8 @@ public class TestGlobalFont {
         jFrame.add(jButton1);
 
         // 嵌入HTML代码，换行输出JLabel
-        int x = 10, y = 20;
+        int x = 10;
+        int y = 20;
         JLabel jLabel2 = new JLabel("<html><body><p>" + x + "<br>" + y + "</p></body></html>");
         jFrame.add(jLabel2);
     }

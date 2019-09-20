@@ -233,8 +233,7 @@ public class ComponentInWindow extends JFrame {
      * 窗口初始化的方法。
      */
     private void init() {
-
-        // 在流行布局中每个组件都居中显示
+        // 在流型布局中每个组件都居中显示
         FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
         // 设置布局里面的垂直间距为10px,默认为5px
         flowLayout.setVgap(15);
@@ -397,7 +396,7 @@ public class ComponentInWindow extends JFrame {
         });
 
         btFindBySno.addActionListener(new ActionListener() {
-            
+
             /**
              * 点击按钮，触发事件，按照学号进行检索
              * 
@@ -421,6 +420,7 @@ public class ComponentInWindow extends JFrame {
 
             /**
              * 点击按钮，触发事件，将未检索到的学生信息写到Excel表格中
+             * 
              * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
              */
             @Override
@@ -523,13 +523,16 @@ public class ComponentInWindow extends JFrame {
      */
     public void btFindStuBySign(String excelPath, String dirPath, String sign) {
 
-        // 3.取得返回的数据比较结果
-        String[] compareResults = FindStudentUtil.compareNumber(students, fileList);
-        String result = compareResults[0];
-        int classNum = Integer.parseInt(compareResults[1]);
-        int fileNum = Integer.parseInt(compareResults[2]);
-
-        System.out.println("result:" + result);
+        // 先比较学生列表数量和文件夹内文件数量
+        int classNum = students.size();
+        int fileNum = fileList.size();
+        String compareResult = null;
+        if (classNum == fileNum) {
+            compareResult = "文件数量和学生列表数量一致！" + "学生列表有" + classNum + "个学生，文件列表有" + fileNum + "个文件。";
+        } else {
+            compareResult = "文件数量和学生列表数量不一致！" + "学生列表有" + classNum + "个学生，文件列表有" + fileNum + "个文件。";
+        }
+        System.out.println("compareResult:" + compareResult);
 
         // 3.取得返回的列表结果
         ArrayList<Student> studentFindList = FindStudentUtil.findStu(students, fileList, sign);
@@ -555,13 +558,11 @@ public class ComponentInWindow extends JFrame {
             System.out.println(student);
         }
 
-        jTextArea.append(result + "\n");
+        jTextArea.append(compareResult + "\n");
 
         jTextArea.append("--1.已找到学生有 " + stuNum + " 名，学生列表为：\n");
         for (Student student : studentFindList) {
             // 获取原内容，增加换行符，再拼接list当前值
-            // System.getProperty("line.separator") 为换行，当然"\n"也可以
-            // jTextArea.append(jTextArea.getText() + System.getProperty("line.separator") + temp);
             jTextArea.append(student.toString() + System.getProperty("line.separator"));
         }
 
@@ -569,7 +570,6 @@ public class ComponentInWindow extends JFrame {
         for (Student student : noFoundStuList) {
             jTextArea.append(student.toString() + System.getProperty("line.separator"));
         }
-
     }
 
     /**
