@@ -3,16 +3,9 @@ sudo: false
 jdk:
   - oraclejdk8
 
-branches:
-  only:
-  - master
 
-cache:
-  directories:
-  - '$HOME/.m2/repository'
+# codecov
+script: "mvn cobertura:cobertura"
 
-#before_install:
-# - chmod +x gradlew
-
-script:
-  - mvn clean package -DskipTests=true
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
