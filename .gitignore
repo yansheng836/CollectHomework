@@ -32,6 +32,8 @@ hs_err_pid*
 #暂时忽略该生成的文件
 测试用班级点名册--未交作业的学生名单.xls
 
+# releases files
+releases/*
 
 # Moven project  files
 target/
