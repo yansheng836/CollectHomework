@@ -22,6 +22,8 @@ public class CollectHomeworkMain {
         win.setExcelPath(excelPath);
         win.setDirPath(dirPath);
         win.setSign(sign);
+        // 设置窗口为不可拉伸的
+        win.setResizable(false);
         win.setBounds(400, 200, 1100, 660);
         win.setTitle("查询未交作业的学生名单");
     }
