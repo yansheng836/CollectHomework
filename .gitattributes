@@ -1,0 +1,6 @@
+# Java sources
+*.java          text diff=java
+*.xml           text
+
+# These files are binary and should be left untouched
+*.jar           binary
