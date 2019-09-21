@@ -2,9 +2,13 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fb667a64f8724b798789c67e9c392d38)](https://app.codacy.com/app/yansheng836/CollectHomework?utm_source=github.com&utm_medium=referral&utm_content=yansheng836/CollectHomework&utm_campaign=Badge_Grade_Dashboard)  [![Build Status](https://travis-ci.org/yansheng836/CollectHomework.svg?branch=master)](https://travis-ci.org/yansheng836/CollectHomework)  [![codecov](https://codecov.io/gh/yansheng836/CollectHomework/branch/master/graph/badge.svg)](https://codecov.io/gh/yansheng836/CollectHomework)  [![BCH compliance](https://bettercodehub.com/edge/badge/yansheng836/CollectHomework?branch=master)](https://bettercodehub.com/)  [![GitHub LICENSE ](https://img.shields.io/github/license/yansheng836/CollectHomework)](https://github.com/yansheng836/CollectHomework/blob/master/LICENSE)  [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/yansheng836/CollectHomework?include_prereleases)](https://github.com/yansheng836/CollectHomework/releases)
 
-出发点：为了方便学习委员收作业，自动清算已交作业的学生名单和未交作业的学生名单。  
-
 主要内容：简单的 `jxl` 读写Excel文件。
+
+<br/>
+
+出发点：为了方便学习委员收作业，用`jxl`写了个简单的小工具，该工具可以自动统计已交作业的学生名单和未交作业的学生名单。
+
+​    收到作业后，只需要输入班级点名册路径和存放作业的文件夹路径，然后简单操作，就可自动统计人数、打印已交作业的学生名单和未交作业的学生名单，并支持将未交作业的学生名单输出到Excel表格中。  
 
 ---
 

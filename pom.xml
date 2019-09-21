@@ -4,9 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ys</groupId>
 	<artifactId>CollectHomework</artifactId>
-	<version>1.2.0-SNAPSHOT</version>
+	<version>1.3.0-SNAPSHOT</version>
 	<name>CollectHomework</name>
-	<description>清点作业</description>
+	<description>出发点：为了方便学习委员收作业，用jxl写了个简单的小工具，该工具可以自动统计已交作业的学生名单和未交作业的学生名单。
+​    收到作业后，只需要输入班级点名册路径和存放作业的文件夹路径，然后简单操作，就可自动统计人数、打印已交作业的学生名单和未交作业的学生名单，
+          并支持将未交作业的学生名单输出到Excel表格中。 </description>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/net.sourceforge.jexcelapi/jxl -->
