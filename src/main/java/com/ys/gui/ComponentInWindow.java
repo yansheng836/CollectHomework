@@ -136,9 +136,24 @@ public class ComponentInWindow extends JFrame {
     private JButton btFindBySname;
 
     /**
-     * 清楚数据的按钮
+     * 清空路径文本框数据的按钮
+     */
+    private JButton cleanPathJbt;
+
+    /**
+     * 清空统计数据的文本框的按钮
+     */
+    private JButton cleanNumJbt;
+
+    /**
+     * 清空文本域显示的数据的按钮
      */
     private JButton cleanJButton;
+
+    /**
+     * 清空所有文本数据的按钮
+     */
+    private JButton cleanAllJbt;
 
     /**
      * @Fields btSaveNoStuToExcel : 保存未找到的学生的按钮
@@ -249,9 +264,13 @@ public class ComponentInWindow extends JFrame {
         btReadDir = new JButton("读取文件夹");
         btFindBySno = new JButton("按学号进行查找文件");
         btFindBySname = new JButton("按姓名进行查找文件");
-        btSaveNoStuToExcel = new JButton("<br>将未交作业的学生名单保存到excel文件中");
+        btSaveNoStuToExcel = new JButton("将未交作业的学生名单保存到excel文件中");
 
-        cleanJButton = new JButton("清空显示");
+        cleanPathJbt = new JButton("清空路径");
+        cleanNumJbt = new JButton("清空统计数据");
+        cleanJButton = new JButton("清空文本打印数据");
+        cleanAllJbt = new JButton("清空所有显示数据");
+
         /*
          * 显示班级总人数，已交作业的学生人数，未交作业的人数，文件夹下文件总数
          * jlClassNo，jtfClassNo，jlStuNo，jtfStuNo，jlNoStuNo，jtfNoStuNo，jlFileNo，jtfFileNo
@@ -278,18 +297,18 @@ public class ComponentInWindow extends JFrame {
         // 添加滚动窗格，当内容超过范围时，显示滚动条
         JScrollPane jsp1 = new JScrollPane(jTextArea);
 
-        // 标签
+        // 路径标签和文本框
         this.add(jlExcelPath);
         this.add(jtfExcelPath);
         this.add(jlDirPath);
         this.add(jtfDirPath);
 
         // button
+        this.add(cleanPathJbt);
         this.add(btReadExcel);
         this.add(btReadDir);
         this.add(btFindBySno);
         this.add(btFindBySname);
-        this.add(cleanJButton);
 
         // 添加显示数量信息的组件
         this.add(jlClassNo);
@@ -310,8 +329,12 @@ public class ComponentInWindow extends JFrame {
         this.add(jlNoFindStuNo);
         this.add(jtfNoFindStuNo);
 
+        this.add(cleanNumJbt);
+
         //
         this.add(btSaveNoStuToExcel);
+        this.add(cleanJButton);
+        this.add(cleanAllJbt);
 
         // this.add(jTextArea);
         this.add(jsp1);
@@ -428,14 +451,44 @@ public class ComponentInWindow extends JFrame {
                 // 路径不为空保存数据，否则返回错误信息
                 boolean bool = judgePathIsNoNull();
                 if (bool) {
-                    ExcelUtil.writeExcel(excelPath, noFoundStuList);
-                    // 显示保存信息
-                    String saveExcelPath = ExcelUtil.getSaveExcelFileName(excelPath);
-                    jTextArea.setText("----写数据到(" + saveExcelPath + ")成功。----\n");
+                    String saveExcelPath = ExcelUtil.writeExcel(excelPath, noFoundStuList);
+                    // 判空，显示保存信息
+                    if (saveExcelPath != null) {
+                        jTextArea.setText("----写数据到(" + saveExcelPath + ")成功。----\n");
+                    }else {
+                        System.err.println("----文件路径( " + excelPath + ") 不存在，保存数据到Excel失败！！");
+                        jTextArea.setText("----文件路径( " + excelPath + ") 不存在，保存数据到Excel失败！！");
+                    }
                 } else {
                     jTextArea.setText("--保存数据失败，Excel或文件夹路径为空！！\n");
                 }
 
+            }
+        });
+
+        cleanPathJbt.addActionListener(new ActionListener() {
+
+            /**
+             * 清空路径文本框的内容
+             * 
+             * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cleanPath();
+            }
+        });
+
+        cleanNumJbt.addActionListener(new ActionListener() {
+
+            /**
+             * 清空路径文本框的内容
+             * 
+             * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cleanNum();
             }
         });
 
@@ -448,10 +501,59 @@ public class ComponentInWindow extends JFrame {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                jTextArea.setText("");
+                cleanJta();
             }
         });
 
+        cleanAllJbt.addActionListener(new ActionListener() {
+
+            /**
+             * 清空文本域的内容
+             * 
+             * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cleanPath();
+                cleanNum();
+                cleanJta();
+            }
+        });
+
+    }
+
+    // 下面这三个clean开头的函数用于清除显示数据
+    public void cleanPath() {
+        jtfExcelPath.setText("");
+        jtfDirPath.setText("");
+        setListToNull();
+    }
+
+    public void cleanNum() {
+        jtfClassNo.setText("");
+        jtfCurrentStuNo.setText("");
+        jtfFileNo.setText("");
+        jtfFindStuNo.setText("");
+        jtfNoFindStuNo.setText("");
+        jtfSpecialStuNo.setText("");
+        setListToNull();
+    }
+
+    public void cleanJta() {
+        jTextArea.setText("");
+        setListToNull();
+    }
+
+    /**
+     * 将列表置为空
+     */
+    public void setListToNull() {
+        if (students != null) {
+            students = null;
+        }
+        if (fileList != null) {
+            fileList = null;
+        }
     }
 
     /**
@@ -466,23 +568,29 @@ public class ComponentInWindow extends JFrame {
         jTextArea.setText("--表格路径为:" + excelPath + "\n");
 
         ArrayList<Student>[] studentsArray = ExcelUtil.readExcel(excelPath);
+        // 判断是否为空，如果为空，则表示文件不存在
+        if (studentsArray != null) {
+            students = studentsArray[0];
+            ArrayList<Student> specialStudents = studentsArray[1];
 
-        students = studentsArray[0];
-        ArrayList<Student> specialStudents = studentsArray[1];
+            int studentSize = students.size();
+            int specialStuNo = specialStudents.size();
+            // 显示班级人数
+            jtfClassNo.setText(String.valueOf(studentSize + specialStuNo));
+            jtfSpecialStuNo.setText(String.valueOf(specialStuNo));
+            jtfCurrentStuNo.setText(String.valueOf(studentSize));
 
-        int studentSize = students.size();
-        int specialStuNo = specialStudents.size();
-        // 显示班级人数
-        jtfClassNo.setText(String.valueOf(studentSize + specialStuNo));
-        jtfSpecialStuNo.setText(String.valueOf(specialStuNo));
-        jtfCurrentStuNo.setText(String.valueOf(studentSize));
-
-        jTextArea.append("--扫描到的学生人数为:" + studentSize + "，学生信息如下：\n");
-        System.out.println("--扫描Excel得到的学生人数为:" + studentSize + "，学生信息如下：");
-        for (Student student : students) {
-            System.out.println(student.toString());
-            jTextArea.append("  " + student.toString() + System.getProperty("line.separator"));
+            jTextArea.append("--扫描到的学生人数为:" + studentSize + "，学生信息如下：\n");
+            System.out.println("--扫描Excel得到的学生人数为:" + studentSize + "，学生信息如下：");
+            for (Student student : students) {
+                System.out.println("  " + student.toString());
+                jTextArea.append("  " + student.toString() + System.getProperty("line.separator"));
+            }
+        } else {
+            jTextArea.append("--文件不存在、或者表格格式不正确，请检查后重新输入！！！");
+            cleanNum();
         }
+
     }
 
     /**
@@ -499,14 +607,19 @@ public class ComponentInWindow extends JFrame {
         jTextArea.setText("--文件夹路径为:" + dirPath + "\n");
 
         fileList = FileUtil.readDir(dirPath);
-        int fileSize = fileList.size();
-        // 显示文件数量
-        jtfFileNo.setText(String.valueOf(fileSize));
+        // 判断是否为空，如果为空，则表示文件不存在
+        if (fileList != null) {
+            int fileSize = fileList.size();
+            // 显示文件数量
+            jtfFileNo.setText(String.valueOf(fileSize));
 
-        jTextArea.append("--扫描文件夹得到的文件数量为:" + fileSize + "，文件名如下：\n");
-        System.out.println("--扫描文件夹得到的文件数量为:" + fileSize + "，文件名如下：");
-        for (String string : fileList) {
-            jTextArea.append("  " + string + System.getProperty("line.separator"));
+            jTextArea.append("--扫描文件夹得到的文件数量为:" + fileSize + "，文件名如下：\n");
+            System.out.println("--扫描文件夹得到的文件数量为:" + fileSize + "，文件名如下：");
+            for (String string : fileList) {
+                jTextArea.append("  " + string + System.getProperty("line.separator"));
+            }
+        } else {
+            jTextArea.append("--文件不存在，请检查后重新输入！！！");
         }
 
     }
@@ -522,6 +635,12 @@ public class ComponentInWindow extends JFrame {
      *            标识
      */
     public void btFindStuBySign(String excelPath, String dirPath, String sign) {
+
+        // 先判空，防止NPE问题，如果读取Excel或者文件夹失败就可能是空
+        if (students == null || fileList == null) {
+            jTextArea.append("--读取文件失败，请检查路径是否有误！！！");
+            return;
+        }
 
         // 先比较学生列表数量和文件夹内文件数量
         int classNum = students.size();
@@ -550,12 +669,12 @@ public class ComponentInWindow extends JFrame {
 
         System.out.println("--1.已找到学生有 " + stuNum + " 名，学生列表为：");
         for (Student student : studentFindList) {
-            System.out.println(student);
+            System.out.println("  " + student.toString());
         }
 
         System.out.println("\n--2.未找到学生有 " + noStuNum + " 名，学生列表为：");
         for (Student student : noFoundStuList) {
-            System.out.println(student);
+            System.out.println("  " + student.toString());
         }
 
         jTextArea.append(compareResult + "\n");
@@ -563,12 +682,12 @@ public class ComponentInWindow extends JFrame {
         jTextArea.append("--1.已找到学生有 " + stuNum + " 名，学生列表为：\n");
         for (Student student : studentFindList) {
             // 获取原内容，增加换行符，再拼接list当前值
-            jTextArea.append(student.toString() + System.getProperty("line.separator"));
+            jTextArea.append("  " + student.toString() + System.getProperty("line.separator"));
         }
 
         jTextArea.append("\n--2.未找到学生有 " + noStuNum + " 名，学生列表为：\n");
         for (Student student : noFoundStuList) {
-            jTextArea.append(student.toString() + System.getProperty("line.separator"));
+            jTextArea.append("  " + student.toString() + System.getProperty("line.separator"));
         }
     }
 

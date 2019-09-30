@@ -35,8 +35,14 @@ public class ExcelUtil {
      */
     public static ArrayList<Student>[] readExcel(String excelPath) {
 
-        System.out.println("----读取excel文件(" + excelPath + ")中的信息：");
+        // 如果文件不存在直接返回null
+        File file = new File(excelPath);
+        if (!file.exists()) {
+            System.err.println("----文件路径( " + excelPath + " )不存在");
+            return null;
+        }
 
+        System.out.println("----读取excel文件(" + excelPath + ")中的信息：");
         // 定义ArrayList，用于存储bean（Student）的集合，设置初始容量为40
         ArrayList<Student> students = new ArrayList<Student>(40);
         ArrayList<Student> specialStudents = new ArrayList<Student>(10);
@@ -48,7 +54,7 @@ public class ExcelUtil {
         // 1. 新建（打开）一个工作簿对象
         Workbook workbook = null;
         try {
-            workbook = Workbook.getWorkbook(new File(excelPath));
+            workbook = Workbook.getWorkbook(file);
             // 2. 获得第一个工作表对象
             Sheet sheet = workbook.getSheet(0);
             int rows = sheet.getRows();
@@ -117,12 +123,18 @@ public class ExcelUtil {
     /**
      * 将学生列表的数据写到Excel的方法。
      * 
-     * @param excelPath1    需要读取的Excel表格路径
-     * @param students 学生列表
+     * @param excelPath1
+     *            需要读取的Excel表格路径
+     * @param students
+     *            学生列表
      */
-    public static void writeExcel(String excelPath1, ArrayList<Student> students) {
-        // 保存数据的excel文件名
+    public static String writeExcel(String excelPath1, ArrayList<Student> students) {
+        // 保存数据的excel文件名，要判空
         String excelPath = getSaveExcelFileName(excelPath1);
+        if (excelPath == null) {
+            System.err.println("----文件路径( " + excelPath1 + ") 不存在");
+            return null;
+        }
 
         // 1.1 打开文件
         WritableWorkbook workbook = null;
@@ -139,7 +151,7 @@ public class ExcelUtil {
             sheet.addCell(labelNo);
             sheet.addCell(labelSno);
             sheet.addCell(labelSname);
-            
+
             // 从第二行开始写
             int rows = students.size();
             for (int i = 0; i < rows; i++) {
@@ -174,6 +186,8 @@ public class ExcelUtil {
         } finally {
             closeWorkbook(workbook);
         }
+
+        return excelPath;
     }
 
     /**
@@ -217,6 +231,13 @@ public class ExcelUtil {
      * @return String 保存Excel数据的文件名（路径名）
      */
     public static String getSaveExcelFileName(String excelPath) {
+
+        // 如果文件不存在直接返回null
+        File file = new File(excelPath);
+        if (!file.exists()) {
+            System.err.println("----文件路径( " + excelPath + " )不存在");
+            return null;
+        }
         // 提取不含扩展名的文件名
         String perfix = excelPath.substring(0, excelPath.lastIndexOf("."));
         String excelPath1 = perfix + "--未交作业的学生名单.xls";

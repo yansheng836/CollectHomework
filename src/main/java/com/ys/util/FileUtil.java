@@ -20,15 +20,21 @@ public class FileUtil {
      */
     public static ArrayList<String> readDir(String dirPath) {
 
-        // 用于存储文件列表
-        ArrayList<String> fileList = null;
-        File file = null;
-        try {
-            file = new File(dirPath);
+        // 如果文件不存在直接返回null
+        File file = new File(dirPath);
+        if (!file.exists()) {
+            System.err.println("----文件路径( " + dirPath + ") 不存在");
+            return null;
+        }
+        /*try {
+            file = 
         } catch (NullPointerException e) {
             System.err.println("读取文件夹时发生NullPointerException异常，即文件夹路径为空。");
             e.printStackTrace();
-        }
+        }*/
+
+        // 用于存储文件列表
+        ArrayList<String> fileList = null;
 
         // 遍历path下的文件和目录，存进File数组中
         File[] files = file.listFiles();
